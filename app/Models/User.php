@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -66,4 +66,28 @@ class User extends Authenticatable
     {
         return $this->hasOne(Investment::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    /**
+     * Check if the user has aa role
+     * @param string $role
+     * @return bool
+     */
+    public function hasAnyrole(string $role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
+    /**
+     * Check if the user has any given role
+     * @param array $role
+     * @return bool
+     */
+     public function hasAyRoles(array $role)
+     {
+        return null !== $this->roles()->whereIn('name', $role)->first();
+     }
 }

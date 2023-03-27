@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */ 
+
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
@@ -8,4 +10,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    /**resolve: {
+        alias: {
+            '~bootsrap': path.resolve(__dirname, 'node_modules/bootstra'),
+        }
+    },*/
 });

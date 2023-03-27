@@ -19,7 +19,13 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        /**
+         * Implement guard for 'admin'
+         */
+        if(request()->is('admin/*')) {
+            config()->set('fortify.guard', 'admin');
+            config()->set('fortify.home', 'admin/home');
+        }
     }
 
     /**
@@ -31,6 +37,32 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        //Auth views
+        Fortify::loginView(function ()
+        {
+            return view('auth.login');
+        });
+
+        Fortify::registerView(function ()
+        {
+            return view('auth.register');
+        });
+
+        Fortify::requestPasswordResetLinkView(function ()
+        {
+            return view('auth.forgot-password');
+        });
+
+        Fortify::resetPasswordView(function ($request)
+        {
+            return view('auth.reset-password', ['request' => $request]);
+        });
+
+        Fortify::verifyEmailView(function ()
+        {
+            return view('auth.verify-email');
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

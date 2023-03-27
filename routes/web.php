@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+/**
+ * Include admin route
+ */
+require __DIR__ . '/admin.php';
+
+Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
