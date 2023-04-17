@@ -13,17 +13,17 @@ class Plan extends Model
 
     protected $fillable = [
         'name',
-        'amount',
+        'min_deposit',
+        'max_deposit',
         'contact_life',
         'business_day',
         'withdrawal',
         'referral_bonus',
         'profit',
-
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

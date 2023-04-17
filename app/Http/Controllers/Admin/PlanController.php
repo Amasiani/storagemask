@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Plan;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -13,7 +16,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.plans.index', ['plans' => Plan::paginate(10)]);
     }
 
     /**
@@ -21,15 +24,30 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plans.create', ['users' => User::all()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        
+        $request->validate([
+            'name' => 'required:string',
+            'min_deposit' => 'required:numeric',
+            'max_deposit' => 'required:numeric',
+            'contact_life' => 'required:string',
+            'business_day' => 'required:string',
+            'withdrawal' => 'required:string',
+            'referral_bonus' => 'required:numeric',
+            'profit' => 'required:numeric',
+        ]);
+    
+        Plan::create($request->all());
+
+        return redirect()->route('admin.plans.index')->with('success', 'Plan created.');
+        
     }
 
     /**

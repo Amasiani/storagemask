@@ -42,9 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function plan()
+    public function plans()
     {
-        return $this->hasManyThrough(Plan::class, Investment::class, 'user_id', 'investment_id', 'id', 'id');
+        return $this->belongsToMany(Plan::class)->withTimestamps();
     }
 
     public function network()
@@ -86,7 +86,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param array $role
      * @return bool
      */
-     public function hasAyRoles(array $role)
+     public function hasAnyRoles(array $role)
      {
         return null !== $this->roles()->whereIn('name', $role)->first();
      }

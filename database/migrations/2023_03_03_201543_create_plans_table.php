@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->unsignedDecimal('amount', $precision = 8, $scale = 2);
+            $table->decimal('min_deposit', $precision = 8, $scale = 2);
+            $table->decimal('max_deposit', $precision = 8, $scale = 2);
             $table->unsignedInteger('contact_life');
             $table->string('business_day', 100);
             $table->string('withdrawal', 100);

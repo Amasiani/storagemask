@@ -1,7 +1,16 @@
 <?php
 
-use App\Http\Controllers\ContactFormController;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\RoleUserController;
+use App\Http\Controllers\Admin\InvestmentController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +27,36 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+/*
+Route::get('/testing', function () {
+    $interestPercents = User::with('plan')->get();
+    foreach ($interestPercents as $user)
+        foreach($user->plans as $plan)
+            dd($plan->name);
+    
+    if (Schema::hasColumn('plan_user', 'investment')) {
+        echo ('yes');
+    } else echo ('no!!!');
+    return view('home');
+})->name('home');
+*/
+
 /**
  * Include admin route
  */
-require __DIR__ . '/admin.php';
 
+Route::get('/home', [HomeController::class, 'redirect'])->name('home');
 Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
+
+
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/roleusers/create', [RoleUserController::class, 'assignRoleCreate'])->name('assign');
+    Route::post('/roleusers/store', [RoleUserController::class, 'roleuserStore'])->name('assignStore');
+    Route::resources([
+        'accounts' => AccountController::class,
+        'users' => UserController::class,
+        'plans' => PlanController::class,
+        'investments' => InvestmentController::class,
+    ]);
+});

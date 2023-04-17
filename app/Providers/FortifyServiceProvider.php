@@ -22,10 +22,10 @@ class FortifyServiceProvider extends ServiceProvider
         /**
          * Implement guard for 'admin'
          */
-        if(request()->is('admin/*')) {
+        /**if(request()->is('admin/*')) {
             config()->set('fortify.guard', 'admin');
             config()->set('fortify.home', 'admin/home');
-        }
+        }*/
     }
 
     /**

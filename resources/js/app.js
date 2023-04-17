@@ -1,7 +1,9 @@
 /*jshint esversion: 6 */ 
 
 import './bootstrap';
-import '../css/app.css';
+import '../css/app.css'
+
+import * as bootstrap from 'bootstrap'
 
 const button = document.querySelector('button');
 button.addEventListener('click', () =>{

@@ -4,20 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Account extends Model
+class RoleUser extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'accounts';
+    protected $table = 'role_user';
 
     protected $fillable = [
-        'amount',
+        'roles',
         'user_id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
