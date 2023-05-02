@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use AjCastro\EagerLoadPivotRelations\EagerLoadPivotTrait;
+
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,9 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    use EagerLoadPivotTrait;
     public function plans()
     {
-        return $this->belongsToMany(Plan::class)->withTimestamps();
+        return $this->belongsToMany(Plan::class)->withPivot('investment')->withTimestamps();
     }
 
     public function network()

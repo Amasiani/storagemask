@@ -52,10 +52,11 @@ class InvestmentController extends Controller
         $currentUser = auth()->user(); //calling current user
         $userAccount = Account::find($currentUser->id); // Getting currentuser Account object
         foreach($plans as $plan)
-            if ( $userAccount->amount < $plan->min_deposit) {
+        if (isset($userAccount->amount)) 
+        {
+            if ($userAccount->amount < $plan->min_deposit) {
                 return redirect()->route('admin.accounts.index')->with('success', 'Your balance is to low to invest!');
-            }
-            else {
+            } else {
                 $userNewBalance =  $userAccount->amount - $request->amount;
                 $userAccount->update([
                     'amount' => $userNewBalance
@@ -63,10 +64,13 @@ class InvestmentController extends Controller
                 PlanUser::create([
                     'plan_id' => $request->plan_id,
                     'user_id' => $currentUser->id,
+                    'investment' => $request->amount,
                 ]);
 
                 return redirect()->route('admin.investments.index')->with('success', 'You have invested and your Account updated!');
             }
+        }
+        else return redirect()->back()->with('success', 'Fund your account!');
     }
 
     /**
@@ -81,7 +85,7 @@ class InvestmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Investment $investment)
+    public function edit(InvestmentController $investment)
     {
         //
     }
@@ -89,7 +93,7 @@ class InvestmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Investment $investment)
+    public function update(Request $request, InvestmentController $investment)
     {
         //
     }
@@ -97,7 +101,7 @@ class InvestmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Investment $investment)
+    public function destroy(InvestmentController $investment)
     {
         //
     }

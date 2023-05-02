@@ -23,5 +23,6 @@ class PlanUser extends Pivot
         'plan_id',
         'user_id',
         'investemnt',
+        'profit',
     ];
 }

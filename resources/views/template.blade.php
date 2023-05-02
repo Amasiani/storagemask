@@ -97,7 +97,7 @@
        <div class="Footer ">
           <div class="Text">
             <p>
-              Designed by Eastsun Network Ltd <span><a class="mytwitter" href="https://twitter.com/eastsunnetwork"><i class="ri-twitter-fill"></i></a></span><br>
+              Designed by Eastsun Network Ltd <br>
               &copy; 2019-<?php echo date('Y')?> | Privacy Policy 
             </p>
           </div>

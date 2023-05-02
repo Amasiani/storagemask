@@ -39,16 +39,15 @@
                                     </div>
                                 </td>
                                 <td>#</td>
-                                <td><a href="{{ route('admin.investments.show', $plan->id) }}" role="button" class="btn btn-info btn-sm">Detail</a></td>
-                            </tr>
-                            
+                                <td><a href="#" role="button" class="btn btn-info btn-sm">Detail</a></td>
+                            </tr>                            
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        
+        {{ $plans->links()}}
     </div>
 </div>
 @endsection

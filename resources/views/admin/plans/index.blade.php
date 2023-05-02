@@ -32,7 +32,7 @@
                                 <td>{{ $plan->name }}</td>
                                 <td>${{ $plan->min_deposit }}</td>
                                 <td>${{ $plan->max_deposit }}</td>
-                                <td>{{ $plan->contact_life }}days</td>
+                                <td>{{ $plan->contact_life == 14 ?  $plan->contact_life . ' ' . 'Days' : $plan->contact_life . ' ' . 'Months'   }}</td>
                                 <td>{{ $plan->business_day }}</td>
                                 <td>{{ $plan->withdrawal }}</td>
                                 <td>{{ $plan->referral_bonus }}%</td>

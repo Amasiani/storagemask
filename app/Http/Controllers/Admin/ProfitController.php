@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Plan;
 use App\Models\PlanUser;
 use App\Models\User;
@@ -13,11 +14,11 @@ class ProfitController extends Controller
     //
     public function Calprofit()
     {
-        $investment = PlanUser::with('investment');
+        $Useraccounts = User::with('account')->get();
+            foreach ($Useraccounts as $Useraccount)
+                foreach ($Useraccount->plans  as $plan)
+                    $plan->pivot->investment;
 
-        $interestPercent = Plan::with('PlanUser');
-        dd(' $interestPercent');
-        $profit = 
-        dd($investment);
+        return view('profit', ['profit' => $Useraccounts]);
     }
 }
