@@ -32,43 +32,16 @@ Route::get('/', function () {
 
 
 Route::get('/testing', function () {
-    //$Useraccounts = User::with('plan')->get();
-    //$xyzs = $Useraccounts->pluck('email');
-    $user1 = User::find(1);
-    //$userplans = User::with('users->plan')->get();
-    /*
-    $interestPercents = User::with('plan')->get();
-    foreach ($interestPercents as $user)
-        foreach($user->plans as $plan)
-    
-    if (Schema::hasColumn('plan_user', 'investment'))
-    {
-        echo ('yes');
-    } else echo ('no!!!');
-    */
-    $Useraccounts = User::with('account')->get();
-        foreach ($Useraccounts as $Useraccount)
-            $exp0 = $Useraccount->name;
-            foreach ($Useraccount->plans  as $plan)
-                $exp1 = $plan->name;
-                $exp = $plan->pivot->investment;
-    return view(
-        'home',
-        [
-            'yeahs' => $user1,
-            'hello' => $exp,
-            'hello1' => $exp0,
-            'hello2' => $exp1,
-        ]
-    );
-})->name('home');
+    return view('home');
+})->name('testing');
 
 /**
  * Include admin route
  */
 
 Route::get('/home', [HomeController::class, 'redirect'])->name('home');
-Route::get('/profit', [ProfitController::class, 'Calprofit'])->name('profit');
+Route::get('/profits', [ProfitController::class, 'Calprofit'])->name('profits');
+Route::get('/updateprofit', [ProfitController::class, 'updateinvestment'])->name('updateprofit');
 Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
 
 

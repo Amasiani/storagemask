@@ -875,12 +875,8 @@
                             @foreach($yeahs->plans as $yeah)
                             <ul>
                                 <li>{{ $yeah->name }}</li>
-
                                 @endforeach
                                 @endif
-                                <li>Amount invested: {{ $hello }}</li>
-                                <li>Investor name: {{ $hello1 }}</li>
-                                <li>Plan invested in: {{ $hello2 }}</li>
                             </ul>
                         </div>
 

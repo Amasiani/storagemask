@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Role;
+use App\Http\Controllers\Admin\ProfitController;
 use Illuminate\Console\Command;
 
 class CalProfit extends Command
@@ -27,6 +27,6 @@ class CalProfit extends Command
     public function handle(): void
     {
         //
-        Role::create(['name' => 'cron']);
+        [ProfitController::class, 'updateprofit'];
     }
 }
