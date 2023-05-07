@@ -19,24 +19,24 @@ class HomeController extends Controller
         
          //$roles = User::with('roles')->get(); //eager loading a relationship model
         $user = auth()->user(); // calling the authenticated user
-        $roles = $user->roles; // calling the roles relationship table
+        //$roles = $user->roles; // calling the roles relationship table
        
-        foreach ($roles as  $role)
-            $role->name;
+        foreach ($user->roles as  $role)
+            $role;
 
         if(auth()->check())  // 
         {
-            if (!isset($role->name) or (!$role->name == ('Superuser' || 'Admin'))) {
+            if ((!isset($role->name) or (!$role->name == ('Superuser' || 'Admin')))) {   //$user->roles->contains($role->name) && ($role->name === ('Superuser' || 'Admin'))
                 return view('dashboard');
             } else {
-                return view('admin.dashboard.home', [
-                    'accounts' => Account::paginate(10),
-                    'users' => User::paginate(10),
-                    'investments' => PlanUser::paginate(10),
-                    'networks' => Network::paginate(10),
-                    'referrals' => Referral::paginate(10),
-                    'roles' => Role::paginate(10),
-                    'plans' => Plan::paginate(10),
+               return view('admin.dashboard.home', [
+                'accounts' => Account::paginate(10),
+                'users' => User::paginate(10),
+                'investments' => PlanUser::paginate(10),
+                'networks' => Network::paginate(10),
+                'referrals' => Referral::paginate(10),
+                'roles' => Role::paginate(10),
+                'plans' => Plan::paginate(10),
                 ]);
             }
         }else{

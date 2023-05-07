@@ -12,6 +12,12 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class AccountController extends Controller
 {
+    
+    public function __construct()
+    {
+        //$this->middleware
+        $this->middleware([ 'auth.isSuperuser', 'auth.isAdmin', 'verified'])->except('show');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -55,24 +61,7 @@ class AccountController extends Controller
             $updateAccount->update(['amount' => $newvalue]);
 
             return redirect()->route('admin.accounts.index')->with('success', 'Account updated');
-        }
-        
-        
-
-       
-       
-        /**
-        *$exit_amount = DB::table('accounts')->where('amount', '>=', 1)->get();
-        *foreach ($exit_amount as $account)
-        *{
-        *    if (!$request->user_id == $account->user_id)
-         *   {
-                
-        *    }
-        *    else return redirect()->route('admin.accounts.index')->with('success', 'Amount filled');
-        *}
-        */
-       
+        }   
     }
 
     /**

@@ -26,14 +26,8 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    $user1 = User::find(1);
-    return view('home', ['yeahs' => $user1]);
-})->name('home');
-
-
-Route::get('/testing', function () {
-    return view('home');
-})->name('testing');
+    return view('welcome');
+})->name('welcome');
 
 /**
  * Include admin route
@@ -41,7 +35,7 @@ Route::get('/testing', function () {
 
 Route::get('/home', [HomeController::class, 'redirect'])->name('home');
 Route::get('/profits', [ProfitController::class, 'Calprofit'])->name('profits');
-Route::get('/updateprofit', [ProfitController::class, 'updateinvestment'])->name('updateprofit');
+Route::get('/updateprofit', [ProfitController::class, 'updateprofit'])->name('updateprofit');
 Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
 
 
