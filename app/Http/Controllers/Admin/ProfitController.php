@@ -10,7 +10,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-
 class ProfitController extends Controller
 {
     //
@@ -18,6 +17,7 @@ class ProfitController extends Controller
     {
         $readyusers = [];
         $readyusers = PlanUser::where('updated_at', '<=', Carbon::now()->subHours(24))->get(); //collection of users due for profit
+        //dd($readyusers->pluck('id')->toArray()); //PlanUserIds
         foreach($readyusers as $ready)
         {
             $usersDueForProfits = PlanUser::where('id', '=', $ready->id)->get();
@@ -43,10 +43,13 @@ class ProfitController extends Controller
     public function updateprofit()
     {
         $planuserId = $this->getusers();
-        if (!$planuserId == null) {
-            $userId = $planuserId->id; //used to 'user_id' formerly
-            $profittedUser = PlanUser::find($userId); // finding user to update
-            $profittedUser->update(['profit' => $this->Calprofit()]); //updating profit
+        if ($planuserId != null) {
+            // $userId = $planuserId->id; //used 'user_id' formerly
+            $userIds = $planuserId->pluck('id');
+            for ($i = 0; $i < $userIds->count(); $i++) {
+                $profittedUser = PlanUser::find($userIds[$i]); // finding user to update
+                $profittedUser->update(['profit' => ($profittedUser->profit + $this->Calprofit())]); //updating profit
+            }
         }
     }
 }

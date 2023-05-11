@@ -22,7 +22,7 @@ class PlanUser extends Pivot
     protected $fillables = [
         'plan_id',
         'user_id',
-        'investemnt',
+        'investment',
         'profit',
     ];
 }

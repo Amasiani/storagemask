@@ -8,9 +8,9 @@
 </head>
 <body>
     <ul>
-        @foreach($nnas as $nna)
-        <li>{{ $nna }}</li>
-        @endforeach
+        @foreach($user as $user)
+       <li>{{ $user->id }}</li>
+       @endforeach
     </ul>
 </body>
 

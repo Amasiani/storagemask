@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Admin\ProfitController;
+use App\Models\PlanUser;
 use Illuminate\Console\Command;
+use App\Http\Controllers\Admin\ProfitController;
 
 class CalProfit extends Command
 {
@@ -19,14 +20,21 @@ class CalProfit extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Calculate App investor daily profit based on their investment amount';
 
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        //
-        [ProfitController::class, 'updateprofit'];
+
+        $emmy = new ProfitController;
+        $planuserId =   $emmy->getusers();  //$this->getusers();
+        if (!$planuserId == null) {
+            $userId = $planuserId->id; //used 'user_id' formerly
+            $profittedUser = PlanUser::find($userId); // finding user to update
+            $profittedUser->update(['profit' => $emmy->Calprofit()]); //updating profit  $this->Calprofit()
+        }   
+        //[ProfitController::class, 'updateprofit'];
     }
 }

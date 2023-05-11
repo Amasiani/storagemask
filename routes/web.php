@@ -36,6 +36,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'redirect'])->name('home');
 Route::get('/profits', [ProfitController::class, 'Calprofit'])->name('profits');
 Route::get('/updateprofit', [ProfitController::class, 'updateprofit'])->name('updateprofit');
+Route::get('/profit', [ProfitController::class, 'getusers'])->name('updateprofit');
 Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
 
 
