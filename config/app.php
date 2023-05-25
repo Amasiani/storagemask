@@ -196,6 +196,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
 
+        /** 
+         * My service providers
+        */
+        App\Providers\TemplateServiceProvider::class,
+
     ],
 
     /*

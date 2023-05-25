@@ -10,6 +10,9 @@ class Account extends Model
     use HasFactory;
 
     protected $table = 'accounts';
+    protected $casts = [
+        'amount' => 'integer',
+    ];
 
     protected $fillable = [
         'amount',

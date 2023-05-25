@@ -3,12 +3,19 @@
 @section('content')
 <div class="card login-card" max-width="780px">
     <div class="col">
-        <img src="assets/images/seg-nau2.jpg" width="900" height="450" class="card-img" alt="register-img"/>
-        <div class="card-img-overlay">
             <div class="card-body">
                 <p class="login-card-description" class="text-white">Sign up</p>
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('admin.users.store') }}">
                     @csrf
+                    <div class="form-group mb-2">
+                        <label for="referral_code" class="sr-only text-white">Referral code</label>
+                        <input type="text" name="referral_code" id="referral_code" class="form-control @error('referral_code') is-invalid @enderror" placeholder="Referral Code" autofocus>
+                        @error('referral_code')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                     <div class="form-group mb-2">
                         <label for="name" class="sr-only text-white">Name</label>
                         <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="John Doe" autofocus>
@@ -53,7 +60,6 @@
                     <a href="{{ url('/privacy') }}" class="text-danger">Privacy policy</a>
                 </nav>
             </div>
-        </div>
     </div>
 </div>
 @endsection

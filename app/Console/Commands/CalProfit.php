@@ -33,7 +33,7 @@ class CalProfit extends Command
         if (!$planuserId == null) {
             $userId = $planuserId->id; //used 'user_id' formerly
             $profittedUser = PlanUser::find($userId); // finding user to update
-            $profittedUser->update(['profit' => $emmy->Calprofit()]); //updating profit  $this->Calprofit()
+            $profittedUser->update(['profit' => $emmy->CalProfits()]); //updating profit  $this->Calprofit()
         }   
         //[ProfitController::class, 'updateprofit'];
     }

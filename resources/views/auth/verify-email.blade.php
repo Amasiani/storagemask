@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('template')
 @section('title', 'Verify Email')
 @section('content')
     <div class="container">

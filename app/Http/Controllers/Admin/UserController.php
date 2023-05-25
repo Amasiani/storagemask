@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -25,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create', ['roles' => Role::all()]);
+        //return view('admin.users.create', ['roles' => Role::all()]);
+        return view('admin.users.create');
     }
 
     /**
@@ -40,8 +42,10 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $appuser = new CreateNewUser();
-
+        $appuser = new CreateNewUser(); //New instance of Fortify create newuser
+        $link = new ReferralController(); //New instance of Referral controller class
+        $referred_by = Referral::where('link', $request->referral_code)->get(); //Find Referral code user from Referral table
+        
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -49,8 +53,16 @@ class UserController extends Controller
 
         $user = $appuser->create($request->except(['__token', 'role']));
         $user->roles()->sync($request->roles);
-
+        
         Password::sendResetLink($request->only('email'));
+
+        Referral::create(
+            [
+                'user_id' => $user->id,
+                'link' => $link->generateReferralCode()
+            ]
+        ); //populate Referral table
+        $user->update(['referral_id' => $referred_by->value('id')]); //update new user relationship  "referral_id" 
 
         return redirect('admin.users.index')->with('success', 'User created and password reset link sent successfully.');
     }

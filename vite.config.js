@@ -2,7 +2,8 @@
 
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import path from 'path'
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -10,6 +11,8 @@ export default defineConfig({
             input: ['resources/js/app.js'],
             refresh: true,
         }),
+        laravel(['resources/js/app.jsx']),
+        react(),
     ],
     resolve: {
         alias: {

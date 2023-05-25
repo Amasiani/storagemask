@@ -16,7 +16,7 @@ class AccountController extends Controller
     public function __construct()
     {
         //$this->middleware
-        $this->middleware([ 'auth.isSuperuser', 'auth.isAdmin', 'verified'])->except('show');
+        //$this->middleware([ 'auth.isSuperuser', 'auth.isAdmin', 'verified'])->except('show');
     }
     /**
      * Display a listing of the resource.

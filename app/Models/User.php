@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'referral_id'
     ];
 
     /**
@@ -66,10 +67,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Referral::class);
     }
 
-    public function investment()
-    {
-        return $this->hasOne(Investment::class);
-    }
+    /**
+     * public function investment()
+     * {
+     *      return $this->hasOne(Investment::class);
+     * }
+     */
 
     public function roles()
     {

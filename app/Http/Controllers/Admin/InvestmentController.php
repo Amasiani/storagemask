@@ -11,15 +11,16 @@ use App\Models\Account;
 
 class InvestmentController extends Controller
 {
-    public function __construct()
+    /**public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
-    }
+        //$this->middleware(['auth', 'verified']);
+    }*/
     
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+     public function index()
     {
         /**
          * retriving date from customized pivot table
@@ -54,15 +55,19 @@ class InvestmentController extends Controller
        */
       
         $plans = Plan::all(); //Call plans model
-        $currentUser = auth()->user(); //calling current user
-        $userAccount = Account::find($currentUser->id); // Getting currentuser Account object
-        foreach($plans as $plan)
-        if (isset($userAccount->amount)) 
-        {
-            if ($userAccount->amount < $plan->min_deposit) {
+        $currentUser = auth()->user(); //calling current Auth user
+        $userAccount = Account::where('user_id', '=', $currentUser->id); // Getting currentuser Account model (object)
+        //$userAccount_amounts = $userAccount->pluck('amount'); //retrive 'amount' in user account from the Accounts table.
+        //for ($i=0; $i<$userAccount_amounts->count(); $i++)
+            //$userAccount_amounts[$i];
+        $userAccount_amount = $userAccount->value('amount'); //value() retrives value of attribute from a colloction. 
+        foreach ($plans as $plan)
+        if (isset($userAccount_amount)) {
+            if ($userAccount_amount < $plan->min_deposit
+            ) {
                 return redirect()->route('admin.accounts.index')->with('success', 'Your balance is to low to invest!');
             } else {
-                $userNewBalance =  $userAccount->amount - $request->amount;
+                $userNewBalance =  $userAccount_amount - $request->amount; //subtracting the invested amount from the available balance 
                 $userAccount->update([
                     'amount' => $userNewBalance
                 ]);
@@ -74,8 +79,7 @@ class InvestmentController extends Controller
 
                 return redirect()->route('admin.investments.index')->with('success', 'You have invested and your Account updated!');
             }
-        }
-        else return redirect()->back()->with('success', 'Fund your account!');
+        } else return redirect()->back()->with('success', 'Fund your account!');
     }
 
     /**

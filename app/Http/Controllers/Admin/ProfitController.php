@@ -15,41 +15,44 @@ class ProfitController extends Controller
     //
     public function getusers()
     {
-        $readyusers = [];
-        $readyusers = PlanUser::where('updated_at', '<=', Carbon::now()->subHours(24))->get(); //collection of users due for profit
-        //dd($readyusers->pluck('id')->toArray()); //PlanUserIds
-        foreach($readyusers as $ready)
-        {
-            $usersDueForProfits = PlanUser::where('id', '=', $ready->id)->get();
-            foreach ($usersDueForProfits as $usersDueForProfit)
-                return $usersDueForProfit;
-        }
+       return PlanUser::where('updated_at', '<=', Carbon::now()->subHours(24))->get()->pluck("id")->toArray(); //collection of planuser->ids due for profit  $readyusers = 
     }
     
-    public function Calprofit()
+    public function planProfit()
     {
         $planuserCollection = $this->getusers(); //collection
-        if ($planuserCollection != null)
-        {
-            $investment = $planuserCollection->investment;
-            $planId = $planuserCollection->plan_id;
+        $planIds = Planuser::find($planuserCollection)->pluck('plan_id')->toArray(); //Returns planUser plan_ids
+        $emmy = Plan::where('id' , '=', $planIds);
+        //dd($emmy);
+        return Plan::find($planIds); //returns plan->id of each user from the Plan model
+    }
 
-            $planProfits = Plan::find($planId); //find plan_user
-            $planProfit =  $planProfits->profit; //retrieve plan_user profit
-            return ($investment * $planProfit); //calculate profit
-        } 
+    public function CalProfits(): array
+    {
+        $planuserCollection = $this->getusers(); //collection
+        $profits = PlanUser::find($planuserCollection)->pluck('profit')->toArray();
+        $investments = Planuser::find($planuserCollection)->pluck('investment')->toArray();
+        $planProfits = $this->planProfit()->pluck("profit")->toArray();
+        if ($profits != null){
+            return array_map(function($profits, $planProfits, $investments){
+                return $profits + ($planProfits * $investments);
+            }, $profits, $planProfits, $investments);
+        }else {
+            return array_map(function($planProfits, $investments){
+                return ($planProfits * $investments);
+            }, $planProfits, $investments);
+        }
     }
 
     public function updateprofit()
     {
         $planuserId = $this->getusers();
+        $calprofits = $this->CalProfits();
         if ($planuserId != null) {
-            // $userId = $planuserId->id; //used 'user_id' formerly
-            $userIds = $planuserId->pluck('id');
-            for ($i = 0; $i < $userIds->count(); $i++) {
-                $profittedUser = PlanUser::find($userIds[$i]); // finding user to update
-                $profittedUser->update(['profit' => ($profittedUser->profit + $this->Calprofit())]); //updating profit
-            }
+            for ($i=0; $i<=count($calprofits); $i++) {
+                $profittedUser = PlanUser::find($planuserId[$i]); // finding user to update
+                $profittedUser->update(['profit' => $calprofits[$i]]); //updating profit;
+            };
         }
     }
 }

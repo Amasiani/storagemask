@@ -17,30 +17,32 @@ class HomeController extends Controller
     public function redirect()
     {
         
-         //$roles = User::with('roles')->get(); //eager loading a relationship model
-        $user = auth()->user(); // calling the authenticated user
+        //$role = User::with('roles')->get(); //eager loading a relationship model
         //$roles = $user->roles; // calling the roles relationship table
-       
-        foreach ($user->roles as  $role)
-            $role;
 
+        $user = auth()->user(); // calling the authenticated use
+        $role = $user->roles->pluck('name');
         if(auth()->check())  // 
         {
-            if ((!isset($role->name) or (!$role->name == ('Superuser' || 'Admin')))) {   //$user->roles->contains($role->name) && ($role->name === ('Superuser' || 'Admin'))
-                return view('dashboard');
+            if ($role->contains('Admin')) { 
+                return view('admin.dashboard.home', [
+                    'accounts' => Account::paginate(10),
+                    'users' => User::paginate(10),
+                    'investments' => PlanUser::paginate(10),
+                    'networks' => Network::paginate(10),
+                    'referrals' => Referral::paginate(10),
+                    'roles' => Role::paginate(10),
+                    'plans' => Plan::paginate(10),
+                    ]);
             } else {
-               return view('admin.dashboard.home', [
-                'accounts' => Account::paginate(10),
-                'users' => User::paginate(10),
-                'investments' => PlanUser::paginate(10),
-                'networks' => Network::paginate(10),
-                'referrals' => Referral::paginate(10),
-                'roles' => Role::paginate(10),
-                'plans' => Plan::paginate(10),
-                ]);
+               return view('dashboard');
             }
         }else{
-            return redirect()->back();
+            return redirect()->route('login');
         }
+    }
+
+    public function welcome(){
+        return view('welcome', ['plans' => Plan::all()]);
     }
 }

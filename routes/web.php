@@ -25,19 +25,22 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 /**
  * Include admin route
  */
 
-Route::get('/home', [HomeController::class, 'redirect'])->name('home');
-Route::get('/profits', [ProfitController::class, 'Calprofit'])->name('profits');
+Route::get('/home', [HomeController::class, 'redirect'])->middleware('auth')->name('home');
+Route::get('/profits', [ProfitController::class, 'Calprofits'])->name('profits');
+Route::get('/planprofit', [ProfitController::class, 'planProfit'])->name('planProfit');
 Route::get('/updateprofit', [ProfitController::class, 'updateprofit'])->name('updateprofit');
 Route::get('/profit', [ProfitController::class, 'getusers'])->name('updateprofit');
 Route::get('/contact-us', [ContactFormController::class, 'Contactindex'])->name('contact');
+Route::post('/send-contact', [ContactFormController::class, 'sendContactMail'])->name('contact.send');
 
 
 

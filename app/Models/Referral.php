@@ -12,6 +12,7 @@ class Referral extends Model
     protected $table = 'referrals';
 
     protected $fillable = [
+        'user_id',
         'link',
     ];
 
