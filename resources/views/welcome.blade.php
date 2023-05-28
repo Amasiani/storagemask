@@ -267,7 +267,7 @@
                         <p>withdrawal: {{ $plan->withdrawal }}</p>
                         <p>Business days {{ $plan->business_day }}</p>
                         <p>Referral bonus: {{ $plan->referral_bonus }}%</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
+                        <a href="{{ route('admin.investments.create')}}">Make Investment <i class="fa fa-arrow-right ms-2"></i></a>
                     </div>                  
                 </div>
                 @endforeach

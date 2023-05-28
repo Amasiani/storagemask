@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'referral_id'
+        //'referral_id'
     ];
 
     /**
@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use EagerLoadPivotTrait;
     public function plans()
     {
-        return $this->belongsToMany(Plan::class)->withPivot('investment')->withTimestamps();
+        return $this->belongsToMany(Plan::class)->withPivot('investment', 'profit')->withTimestamps();
     }
 
     public function network()

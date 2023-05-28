@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Plan;
 use App\Models\PlanUser;
 use Illuminate\Console\Command;
 use App\Http\Controllers\Admin\ProfitController;
@@ -27,14 +28,22 @@ class CalProfit extends Command
      */
     public function handle(): void
     {
+        // foreach ($planuserIds as $planuserId){
+            //     foreach ($profits as $profit){
+            //         $profittedUser = Plan::find($planuserId);
+            //         $profittedUser->update(['profit' => $profit]);
+            //     }
+            // }
 
-        $emmy = new ProfitController;
-        $planuserId =   $emmy->getusers();  //$this->getusers();
-        if (!$planuserId == null) {
-            $userId = $planuserId->id; //used 'user_id' formerly
-            $profittedUser = PlanUser::find($userId); // finding user to update
-            $profittedUser->update(['profit' => $emmy->CalProfits()]); //updating profit  $this->Calprofit()
-        }   
-        //[ProfitController::class, 'updateprofit'];
+        $profitController = new ProfitController;
+
+        $planuserIds = $profitController->getusers();
+        $profits = $profitController->CalProfits();
+        if ($planuserIds != null) {
+            for ($i = 0; $i <= count($profits); $i++) {
+                $profittedUser = PlanUser::find($planuserIds[$i]); // finding user to update
+                $profittedUser->update(['profit' => $profits[$i]]); //updating profit;
+            };
+        }
     }
 }

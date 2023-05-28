@@ -5,8 +5,10 @@
     <div class="row">
         <div class="card">
             <div class="card-header">
-                Plans
+            Plans
+            @canany(['is-admin', 'is-editor'])
                 <a href="{{ route('admin.plans.create') }}" role="button" class="btn btn-primary btn-sm mb-2 float-end">Create/Edit Plan</a>
+            @endcanany
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -22,7 +24,7 @@
                             <th scope="col">Withdrawal</th>
                             <th scope="col">Referral bonus</th>
                             <th scope="col">Profit</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Invest</th>
                         </tr>
                     </thead>
                         <tbody>
@@ -37,7 +39,7 @@
                                 <td>{{ $plan->withdrawal }}</td>
                                 <td>{{ $plan->referral_bonus }}%</td>
                                 <td>{{ $plan->profit}}</td>
-                                <td><a href="{{ route('admin.plans.show', $plan->id) }}" role="button" class="btn btn-info btn-sm">Detail</a></td>
+                                <td><a href="{{ route('admin.investments.create') }}" role="button" class="btn btn-info btn-sm">Invest</a></td>
                             </tr>
                             @endforeach
                         </tbody>

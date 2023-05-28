@@ -50,16 +50,17 @@ class InvestmentController extends Controller
      */
     public function store(Request $request)
     {
-       /**
+        //$userAccount_amounts = $userAccount->pluck('amount'); //retrive 'amount' in user account from the Accounts table.
+        //for ($i=0; $i<$userAccount_amounts->count(); $i++)
+            //$userAccount_amounts[$i];
+        /**
         * populating pivot table through pivot table mode
        */
       
         $plans = Plan::all(); //Call plans model
         $currentUser = auth()->user(); //calling current Auth user
         $userAccount = Account::where('user_id', '=', $currentUser->id); // Getting currentuser Account model (object)
-        //$userAccount_amounts = $userAccount->pluck('amount'); //retrive 'amount' in user account from the Accounts table.
-        //for ($i=0; $i<$userAccount_amounts->count(); $i++)
-            //$userAccount_amounts[$i];
+       
         $userAccount_amount = $userAccount->value('amount'); //value() retrives value of attribute from a colloction. 
         foreach ($plans as $plan)
         if (isset($userAccount_amount)) {

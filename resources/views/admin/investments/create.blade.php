@@ -1,5 +1,5 @@
-@extends('template')
-
+@extends('admintemp')
+@section('title', 'Invest')
 @section('content')
 <section style="padding-top:10px;">
     <div class="col-md-11">

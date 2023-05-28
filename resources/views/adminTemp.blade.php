@@ -168,9 +168,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="{{ url('home') }}" class="brand-link">
         <img src="/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Storagemaske</span>
       </a>
 
       <!-- Sidebar -->
@@ -182,8 +182,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
+            @if(Route::has(['login']))
             <a href="#" class="d-block">Welcome {{ ucfirst(auth()->user()->name) }}</a>
-            @if(Route::has('login'))
             <a href="{{ route('logout') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="text-decoration: none;" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               <p>Logout</p>
@@ -217,21 +217,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             @canany(['is-admin', 'is-editor'])
             <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a></li>
-            <li><a class="dropdown-item" href="{{ route('admin.plans.index') }}">Churches</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.accounts.index') }}">Accounts</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.plans.index') }}">Plans</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.investments.index') }}">Investments</a></li>           
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="{{ route('admin.investments.index') }}">Adorations</a></li>
-            
+            <li><a class="dropdown-item" href="{{ route('admin.assign') }}">Roles</a></li> 
+            <li><a class="dropdown-item" href="{{ route('admin.referral.index') }}">Referrals</a></li>
             @endcanany
-           
-            
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href=""></a></li>
-            
-            
             <li><a class="dropdown-item" href=""></a></li>
             
           </ul>

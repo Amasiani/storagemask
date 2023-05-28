@@ -8,9 +8,9 @@
                 <form method="POST" action="{{ route('admin.users.store') }}">
                     @csrf
                     <div class="form-group mb-2">
-                        <label for="referral_code" class="sr-only text-white">Referral code</label>
-                        <input type="text" name="referral_code" id="referral_code" class="form-control @error('referral_code') is-invalid @enderror" placeholder="Referral Code" autofocus>
-                        @error('referral_code')
+                        <label for="referral_id" class="sr-only text-white">Referral code</label>
+                        <input type="text" name="referral_id" id="referral_id" class="form-control @error('referral_id') is-invalid @enderror" placeholder="Referral Code" autofocus>
+                        @error('referral_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

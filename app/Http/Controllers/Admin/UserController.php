@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
 {
+    
+    public function __construct()
+    {
+        //$this->middleware('auth.isAdmin');
+        $this->middleware(['auth.isAdmin', 'verified'])->except(['create', 'store']);
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -44,11 +51,12 @@ class UserController extends Controller
     {
         $appuser = new CreateNewUser(); //New instance of Fortify create newuser
         $link = new ReferralController(); //New instance of Referral controller class
-        $referred_by = Referral::where('link', $request->referral_code)->get(); //Find Referral code user from Referral table
+        $referred_by = Referral::where('link', $request->referral_id)->get(); //Find Referral code user from Referral table
         
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
+           // 'referral_id' => 'string|unique:referrals,link',
         ]);
 
         $user = $appuser->create($request->except(['__token', 'role']));
@@ -64,7 +72,7 @@ class UserController extends Controller
         ); //populate Referral table
         $user->update(['referral_id' => $referred_by->value('id')]); //update new user relationship  "referral_id" 
 
-        return redirect('admin.users.index')->with('success', 'User created and password reset link sent successfully.');
+        return redirect()->route('login')->with('success', 'User created and password reset link sent successfully.');
     }
 
     /**

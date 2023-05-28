@@ -16,7 +16,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view('admin.plans.index', ['plans' => Plan::paginate(10)]);
+        return view('admin.plans.index',
+        ['plans' => Plan::paginate(10)]);
     }
 
     /**

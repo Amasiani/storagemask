@@ -55,16 +55,12 @@
                 <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="service.html" class="nav-item nav-link">Service</a>
-                @foreach ($plans as $plan)
-                <a href="service.html" class="nav-item nav-link">{{ $plan->name}}</a>
-                @endforeach
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Plans</a>
                     <div class="dropdown-menu shadow-sm m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="token.html" class="dropdown-item">Token Sale</a>
-                        <a href="faq.html" class="dropdown-item">FAQs</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                    @foreach ($plans as $plan)
+                        <a href="{{ route('admin.plans.index') }}" class="dropdown-item">{{ $plan->name  }}</a>
+                    @endforeach
                     </div>
                 </div>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>

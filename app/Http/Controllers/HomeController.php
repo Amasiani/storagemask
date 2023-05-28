@@ -35,7 +35,9 @@ class HomeController extends Controller
                     'plans' => Plan::paginate(10),
                     ]);
             } else {
-               return view('dashboard');
+                $userResources = PlanUser::where('user_id', $user->id)->first();
+               
+               return view('dashboard', ['userResources' => $userResources]);
             }
         }else{
             return redirect()->route('login');
