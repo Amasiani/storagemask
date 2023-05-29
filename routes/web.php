@@ -3,7 +3,6 @@
 use App\Models\Plan;
 use App\Models\User;
 use App\Models\Referral;
-use App\Console\Commands\CalProfit;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\HomeController;
@@ -53,7 +52,7 @@ Route::post('/send-contact', [ContactFormController::class, 'sendContactMail'])-
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/roleusers/create', [RoleUserController::class, 'assignRoleCreate'])->name('assign');
     Route::post('/roleusers/store', [RoleUserController::class, 'roleuserStore'])->name('assignStore');
-    Route::get('/referral', [ReferralController::class, 'index']);
+    Route::get('/referral', [ReferralController::class, 'index'])->name('referrals.index');
     Route::resources([
         'accounts' => AccountController::class,
         //'users' => UserController::class,

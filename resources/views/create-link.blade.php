@@ -1,4 +1,4 @@
-@extends('template')
+@extends('adminTemp')
 
 @section('content')
 <div class="container">

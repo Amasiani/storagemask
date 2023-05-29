@@ -35,10 +35,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('home') }}" class="nav-link">Home</a>
+          <a href="{{ route('/') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+          <a href="{{ url('/contact-us') }}" class="nav-link">Contact</a>
         </li>
       </ul>
 
@@ -177,7 +177,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
 
-        <div class="user-panel mt-1 pb-0.5 mb-0.5 d-flex">
+        <div class="user-panel mt-1 pb-1 mb-0.5 d-flex">
           <div class="image">
             <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
@@ -224,7 +224,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="{{ route('admin.assign') }}">Roles</a></li> 
-            <li><a class="dropdown-item" href="{{ route('admin.referral.index') }}">Referrals</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.referrals.index') }}">Referrals</a></li>
             @endcanany
             <li>
               <hr class="dropdown-divider">
