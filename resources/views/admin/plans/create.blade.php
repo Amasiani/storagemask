@@ -1,4 +1,4 @@
-@extends('template')
+@extends('adminTemp')
 
 @section('content')
 <section style="padding-top:5px;">

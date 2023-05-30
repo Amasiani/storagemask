@@ -24,7 +24,7 @@ class HomeController extends Controller
         $role = $user->roles->pluck('name');
         if(auth()->check())  // 
         {
-            if ($role->contains('Admin')) { 
+            if ($role->contains('Admin')) {
                 return view('admin.dashboard.home', [
                     'accounts' => Account::paginate(10),
                     'users' => User::paginate(10),
@@ -33,18 +33,26 @@ class HomeController extends Controller
                     'referrals' => Referral::paginate(10),
                     'roles' => Role::paginate(10),
                     'plans' => Plan::paginate(10),
-                    ]);
-            } else {
-                $userResources = PlanUser::where('user_id', $user->id)->first();
-               
-               return view('dashboard', ['userResources' => $userResources]);
+                ]);
             }
+            $userResources = PlanUser::where('user_id', $user->id)->first();
+            //$userplan = Plan::where('id', $userResources->plan_id)->get();
+            return view(
+                'dashboard',
+                [
+                    'userResources' => $userResources,
+                    //'userplan' => $userplan
+                ]
+            );
         }else{
             return redirect()->route('login');
         }
     }
 
     public function welcome(){
-        return view('welcome', ['plans' => Plan::all()]);
+        $hello_world = 1234;
+        return view('welcome',
+        ['plans' => Plan::all(),
+        'hello' => $hello_world]);
     }
 }

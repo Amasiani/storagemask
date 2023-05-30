@@ -1,36 +1,31 @@
-@extends('admintemp')
+@extends('adminTemp')
 @section('title', 'Dashboard')
 @section('content')
 <section>
 <div class="container-fluid">
-<h1>Welcome to the editor Dashboard</h1>
+<h1>Welcome to user Dashboard</h1>
 <a href="{{ route('admin.plans.create') }}" role="button" class="btn btn-primary mb-2 float-end">Create church</a>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Activities</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
-                <th scope="col">Action</th>
+                <th scope="col">Invested Amount</th>
+                <th scope="col">Contact life</th>
+                <th scope="col">Profit</th>
+                <th scope="col">Plan</th>
             </tr>
             </thead>
             <tbody>
             @auth
-                @if ($user = Auth::user() && $userResources != null)
-                        @foreach($userResources as $userResource)
+                @if ($user = Auth::user() && $userResources != null && $userplan != null)
                             <tr>
-                                <th scope="row">{{ $church->id }}</th>
-                                <td>{{ $church->name }}</td>
-                                <td>{{ $church->address }}</td>
-                                <td>{{ Str::limit($church->program, 40) }}</td>
-                                <td>{{ $church->latitude }}</td>
-                                <td>{{ $church->longitude }}</td>
-                                <td><a href="{{ route('admin.churches.show', $church->id) }}" role="button" class="btn btn-info">Show</a></td>
+                                <th scope="row">#</th>
+                                <td>{{ $userResources->investment }}</td>
+                                <td>{{ $userplan->value('contact_life') == 14 ?   $userplan->value('contact_life') . ' ' . 'Days' :  $userplan->value('contact_life') . ' ' . 'Months'   }}</td>
+                                <td>{{ $userResources->profit }}</td>
+                                <td>{{ $userplan->value('name') }}</td>
+                                <td><a href="#" role="button" class="btn btn-info">Show</a></td>
                             </tr>
-                        @endforeach
             </tbody>                   
         </table>     
                     @else

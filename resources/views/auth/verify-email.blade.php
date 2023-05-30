@@ -1,4 +1,4 @@
-@extends('admintemp')
+@extends('authTemp')
 @section('title', 'Verify Email')
 @section('content')
     <div class="container">

@@ -30,7 +30,7 @@
     <!-- Template Stylesheet -->
     <link href="temp/assets/css/style.css" rel="stylesheet">
     @viteReactRefresh
-    @vite('resources/js/app.jsx')
+    <!-- @vite('resources/js/app.jsx') -->
     @vite(['resources/js/app.js'])
 </head>
 

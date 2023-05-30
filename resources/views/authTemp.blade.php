@@ -183,7 +183,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <div class="info">
             @if(Route::has(['login']))
-            <a href="#" class="d-block">Welcome {{ ucfirst(auth()->user()->name) }}</a>
             <a href="{{ route('logout') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="text-decoration: none;" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               <p>Logout</p>
@@ -230,6 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href=""></a></li>
+            
           </ul>
           @endauth
         </div>
