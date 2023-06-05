@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'auth.isAdmin'])->except('index', 'store');
+    }
     /**
      * Display a listing of the resource.
      */

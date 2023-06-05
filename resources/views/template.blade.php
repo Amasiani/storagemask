@@ -29,8 +29,6 @@
 
     <!-- Template Stylesheet -->
     <link href="temp/assets/css/style.css" rel="stylesheet">
-    @viteReactRefresh
-    @vite('resources/js/app.jsx')
     @vite(['resources/js/app.js'])
 </head>
 
@@ -64,10 +62,8 @@
                     </div>
                 </div>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
-
                 @if (Route::has('login'))
                 @auth
-                <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
                 <a href="{{ route('logout') }}" class="nav-item nav-link" style="text-decoration: none;" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                     <p>Logout</p>

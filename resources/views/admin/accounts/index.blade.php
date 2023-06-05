@@ -1,12 +1,12 @@
 @extends('admintemp')
-
+@section('title', 'Accounts')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="card">
             <div class="card-header">
                 Accounts
-                <a href="{{ route('admin.accounts.create') }}" role="button" class="btn btn-primary btn-sm mb-2 float-end">Create/Edit Account</a>
+                <a href="{{ route('admin.accounts.create') }}" role="button" class="btn btn-primary btn-sm mb-2 float-end">Fund user Account</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

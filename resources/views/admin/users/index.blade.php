@@ -1,12 +1,12 @@
 @extends('admintemp')
-@section('title', 'Referral')
+@section('title', 'List of users')
 @section('content')
 <section style="padding-top: 5px;">
     <div class="container">
         <div class="row"> 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('/home') }}" class="btn btn-primary me-md-2 mb-2 float-end" role="button">Back</a>
+                    <a href="{{ route('admin.assign') }}" class="btn btn-primary me-md-2 mb-2 float-end" role="button">Assign role</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
@@ -18,10 +18,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($referrals as $referral)
+                                @foreach($users as $user)
                                 <tr>
-                                    <td scope="row">{{ App\models\User::where('id', $referral->user_id)->get()->value('name')}}</td>
-                                    <td>{{ $referral->link }}</td>
+                                    <td scope="row">{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <!--<td><div class="btn btn-group">
                                             <button type="button" class="btn dropdown-toggle btn-lg" data-bs-toggle="dropdown" aria-expanded="true">
                                             list of churches    
@@ -35,6 +35,9 @@
                                         
                                         </div>
                                     </td>-->
+                                    <td>
+                                        <a href="{{ route('admin.users.show', $user->id) }}"><button type="button" class="btn btn-info">Detail</button></a>
+                                    </td>
                                 </tr>
                                     @endforeach
                             </tbody>

@@ -1,4 +1,4 @@
-@extends('authTemp')
+@extends('authtemp')
 @section('title', 'Reset Password')
 @section('content')
     <!--<div class="container">-->

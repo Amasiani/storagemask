@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account;
 use App\Models\Plan;
 use App\Models\PlanUser;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
+
 class ProfitController extends Controller
 {
     //
@@ -20,11 +17,14 @@ class ProfitController extends Controller
     
     public function planProfit()
     {
+        $planProfits = [];
         $planuserCollection = $this->getusers(); //collection
         $planIds = Planuser::find($planuserCollection)->pluck('plan_id')->toArray(); //Returns planUser plan_ids
-        //$emmy = Plan::where('id' , '=', $planIds);
-        //dd($emmy);
-        return Plan::find($planIds); //returns plans of each user from the Plan model
+        for ($i=0; $i<count($planIds); $i++){
+            $profit = Plan::find($planIds[$i])->pluck('profit');
+        }
+        array_push($planProfits, $profit);
+        return $planProfits; //returns plans of each user from the Plan model
     }
 
     public function CalProfits(): array
@@ -49,11 +49,8 @@ class ProfitController extends Controller
             for ($i = 0; $i < $planuserCollection->count(); $i++) {
                 $investment = PlanUser::find($planuserCollection[$i])->value('investment');
                 $profit =  PlanUser::find($planuserCollection[$i])->value('profit');
-                if ($profit == null)
-                    continue;
-                else $profit;
-                $planprofit = Plan::where('id', '=', $planuserCollection[$i])->get()->value('profit');
-                $userProfit = $profit + ($investment * $planprofit);
+                $planprofit = PlanUser::find($planuserCollection[$i])->value('plan_profit');
+                $userProfit =  $profit + ($investment * $planprofit);
                 array_push($profits, $userProfit);
             }
              return $profits;
@@ -62,13 +59,14 @@ class ProfitController extends Controller
 
     public function updateprofit(): void
     {
-        $planuserId = $this->getusers();
-       $profit = $this->CalProfits();
-        if ($planuserId != null) {
-             for ($i=0; $i<=count($profit); $i++) {
-                 $profittedUser = PlanUser::find($planuserId[$i]); // finding user to update
-                 $profittedUser->update(['profit' => $profit[$i]]); //updating profit;
-            };
-        };
+        $planuserCollection = $this->getusers()->toArray(); //convert planIds to array
+        if ($planuserCollection != null){
+            $planUser_array = PlanUser::find($planuserCollection)->toArray(); // collection converted to array
+
+            for ($i=0; $i<count($planUser_array); $i++){
+                    PlanUser::where('id',  $planuserCollection[$i])->update(
+                        ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]);
+            }            
+        }
     }
 }

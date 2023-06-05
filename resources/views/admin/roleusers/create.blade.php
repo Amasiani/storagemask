@@ -1,12 +1,12 @@
-@extends('template')
-
+@extends('admintemp')
+@section('title', 'Assign role')
 @section('content')
 <section style="padding-top:10px;">
     <div class="col-md-11">
         <div class="card mb-3" style="max-width: 900px;">
             <div class="card-header">
                 <strong>Assign role</strong>
-                <a href="{{ route('admin.plans.index') }}" role="button" class="btn mb-2 float-end">Back</a>
+                <a href="{{ url('/home') }}" role="button" class="btn mb-2 float-end">Back</a>
             </div>
             <div class="card-body">
                 @if(Session::has('success'))

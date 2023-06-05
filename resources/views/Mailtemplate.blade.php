@@ -29,11 +29,8 @@
 
     <!-- Template Stylesheet -->
     <link href="temp/assets/css/style.css" rel="stylesheet">
-    @viteReactRefresh
-    @vite('resources/js/app.jsx')
     @vite(['resources/js/app.js'])
 </head>
-
 <body>
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -52,23 +49,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                <!--<a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>-->
                 <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="service.html" class="nav-item nav-link">Service</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu shadow-sm m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="token.html" class="dropdown-item">Token Sale</a>
-                        <a href="faq.html" class="dropdown-item">FAQs</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
-
                 @if (Route::has('login'))
                 @auth
-                <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
+                <a href="{{ url('/home') }}" class="nav-item nav-link">Home</a>
                 <a href="{{ route('logout') }}" class="nav-item nav-link" style="text-decoration: none;" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                     <p>Logout</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
+use App\Models\PlanUser;
 use App\Models\Referral;
 use App\Models\Role;
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function __construct()
     {
         //$this->middleware('auth.isAdmin');
-        $this->middleware(['auth.isAdmin', 'verified'])->except(['create', 'store']);
+        $this->middleware(['auth.isAdmin'])->only(['index', 'show']);
     }
     
     /**
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        return view('admin.users.index', ['users' => User::all()]);
     }
 
     /**
@@ -47,7 +48,7 @@ class UserController extends Controller
      * Send Password reset link
      * Redirect with a message
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $appuser = new CreateNewUser(); //New instance of Fortify create newuser
         $link = new ReferralController(); //New instance of Referral controller class
@@ -56,11 +57,11 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-           // 'referral_id' => 'string|unique:referrals,link',
+         // 'referral_id' => 'string|unique:referrals,link',
         ]);
-
-        $user = $appuser->create($request->except(['__token', 'role']));
-        $user->roles()->sync($request->roles);
+        
+        $user = $appuser->create($request->except(['__token' ,'role']));
+        //$user->roles()->sync($request->roles);
         
         Password::sendResetLink($request->only('email'));
 
@@ -72,7 +73,7 @@ class UserController extends Controller
         ); //populate Referral table
         $user->update(['referral_id' => $referred_by->value('id')]); //update new user relationship  "referral_id" 
 
-        return redirect()->route('login')->with('success', 'User created and password reset link sent successfully.');
+        return redirect('/login')->with('success', 'User created successfully.');
     }
 
     /**
@@ -81,7 +82,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.users.show', ['user' => User::find($id)]);
+        return view('admin.users.show',
+        ['user' => User::find($id),
+        'userResources' =>  PlanUser::where('id', $id)->get()
+        ]);
     }
 
     /**

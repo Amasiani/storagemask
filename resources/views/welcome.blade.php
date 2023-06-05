@@ -65,10 +65,8 @@
                     </div>
                 </div>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
-
                 @if (Route::has('login'))
                     @auth
-                    <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link" style="text-decoration: none;" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <p>Logout</p>

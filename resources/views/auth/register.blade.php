@@ -5,7 +5,7 @@
     <div class="col">
             <div class="card-body">
                 <p class="login-card-description" class="text-white">Sign up</p>
-                <form method="POST" action="{{ route('admin.users.store') }}">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group mb-2">
                         <label for="referral_id" class="sr-only text-white">Referral code</label>

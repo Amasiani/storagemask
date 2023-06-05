@@ -1,4 +1,4 @@
-@extends('authTemp')
+@extends('authtemp')
 @section('title', 'Verify Email')
 @section('content')
     <div class="container">
@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col">
                     <div class="brand-wrapper">
-                        <img src="/assets/img/gallery/AdminLTELogo.png" alt="logo" class="img-fluid rounded float-start">
+                        <img src="/assets/dist/img/photo4.jpg" alt="logo" class="img-fluid rounded float-start">
                     </div>
                 </div>
                     <div class="col">
@@ -29,7 +29,7 @@
                             <p class="login-card-description">You must verify your email address. Please check your email for a verification link</p>
                             <form method="POST" action="{{ route('verification.send') }}">
                                 @csrf
-                                <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Resend email">
+                                <input name="login" id="login" class="btn btn-primary mb-4" type="submit" value="Resend email">
                             </form>
                         </div>
                     </div>            

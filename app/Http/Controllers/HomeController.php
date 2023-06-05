@@ -7,8 +7,10 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Account;
 use App\Models\Network;
-use App\Models\Referral;
 use App\Models\PlanUser;
+use App\Models\Referral;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -35,24 +37,18 @@ class HomeController extends Controller
                     'plans' => Plan::paginate(10),
                 ]);
             }
-            $userResources = PlanUser::where('user_id', $user->id)->first();
-            //$userplan = Plan::where('id', $userResources->plan_id)->get();
-            return view(
-                'dashboard',
-                [
-                    'userResources' => $userResources,
-                    //'userplan' => $userplan
-                ]
-            );
+            $planUsers = PlanUser::where('user_id', $user->id)->get();
+            $plans = Plan::find($planUsers->pluck('plan_id')->toArray());
+            return view('dashboard',
+            ['planUsers' => $planUsers,
+            'plans' => $plans]);
         }else{
             return redirect()->route('login');
         }
     }
 
     public function welcome(){
-        $hello_world = 1234;
         return view('welcome',
-        ['plans' => Plan::all(),
-        'hello' => $hello_world]);
+        ['plans' => Plan::all()]);
     }
 }

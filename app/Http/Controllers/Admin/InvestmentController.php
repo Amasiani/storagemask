@@ -11,10 +11,10 @@ use App\Models\Account;
 
 class InvestmentController extends Controller
 {
-    /**public function __construct()
+    public function __construct()
     {
-        //$this->middleware(['auth', 'verified']);
-    }*/
+        $this->middleware(['auth', 'verified', 'auth.isAdmin'])->except('create', 'store');
+    }
     
     /**
      * Display a listing of the resource.
@@ -57,7 +57,7 @@ class InvestmentController extends Controller
         * populating pivot table through pivot table mode
        */
       
-        $plans = Plan::all(); //Call plans model
+        $plans = Plan::all(); //Call plans model and retrieve all plans
         $currentUser = auth()->user(); //calling current Auth user
         $userAccount = Account::where('user_id', '=', $currentUser->id); // Getting currentuser Account model (object)
        
@@ -76,9 +76,10 @@ class InvestmentController extends Controller
                     'plan_id' => $request->plan_id,
                     'user_id' => $currentUser->id,
                     'investment' => $request->amount,
+                    'plan_profit' => $plan->profit,
                 ]);
 
-                return redirect()->route('admin.investments.index')->with('success', 'You have invested and your Account updated!');
+                return redirect()->back()->with('success', 'You have invested and your Account updated!');
             }
         } else return redirect()->back()->with('success', 'Fund your account!');
     }

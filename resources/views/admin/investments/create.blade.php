@@ -6,12 +6,14 @@
         <div class="card mb-3" style="max-width: 900px;">
             <div class="card-header">
                 <strong>Investment</strong>
+                @canany(['isAdmin'])
                 <a href="{{ route('admin.investments.index') }}" role="button" class="btn mb-2 float-end">Back</a>
+                @endcanany
+                <a href="{{ url('/home') }}" role="button" class="btn mb-2 float-end">Back</a>
             </div>
             <div class="card-body">
                 @if(Session::has('success'))
                 <div class="alert-session" role="alert">
-                    {{Session::get('success')}}
                 </div>
                 @endif
                 <form method="post" action="{{ route('admin.investments.store') }}" class="row g-3">

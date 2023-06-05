@@ -19,8 +19,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="/assest/dist/css/adminlte.min.css">
-  @viteReactRefresh
-  @vite('resources/js/app.jsx')
   @vite(['resources/js/app.js'])
 </head>
 
@@ -35,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ url('/') }}" class="nav-link">Home</a>
+          <a href="{{ url('/home') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{ url('/contact-us') }}" class="nav-link">Contact</a>
@@ -216,7 +214,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="dropdown-menu">
             
             @canany(['is-admin', 'is-editor'])
-            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a></li>
             <li><a class="dropdown-item" href="{{ route('admin.accounts.index') }}">Accounts</a></li>
             <li><a class="dropdown-item" href="{{ route('admin.plans.index') }}">Plans</a></li>
             <li><a class="dropdown-item" href="{{ route('admin.investments.index') }}">Investments</a></li>           
@@ -224,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="{{ route('admin.assign') }}">Roles</a></li> 
-            <li><a class="dropdown-item" href="{{ route('admin.referrals.index') }}">Referrals</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.index') }}">Referrals</a></li>
             @endcanany
             <li>
               <hr class="dropdown-divider">
@@ -303,61 +300,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
+            <div class="col-lg-12">
+              <!--<div class="card">-->
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's
-                    content.
-                  </p>
+                  <h5 class="card-title"></h5>
+                 
                   @include('partials.alerts')
                   @yield('content')
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                 
                 </div>
-              </div>
-
-              <div class="card card-primary card-outline">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's
-                    content.
-                  </p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
-                </div>
+              <!--</div>-->
               </div><!-- /.card -->
             </div>
             <!-- /.col-md-6 -->
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="m-0">Featured</h5>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Special title treatment</h6>
-
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-
-              <div class="card card-primary card-outline">
-                <div class="card-header">
-                  <h5 class="m-0">Featured</h5>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Special title treatment</h6>
-
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
             <!-- /.col-md-6 -->
           </div>
           <!-- /.row -->

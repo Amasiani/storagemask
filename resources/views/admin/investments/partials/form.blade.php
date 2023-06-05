@@ -7,7 +7,7 @@
     </span>
     @enderror
 </div>
-<div class="col-md-4">
+<div class="col-md-4 py-3 offset-0.5">
     <select name="plan_id" id="plan_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
         @foreach($plans as $plan)                                        
             <option value="{{ $plan->id }}" @selected(old('plan') == $plan->id)> {{ $plan->name }}</option>                                   

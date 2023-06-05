@@ -1,12 +1,11 @@
-@extends('adminTemp')
-
+@extends('admintemp')
+@section('title', 'Create password link')
 @section('content')
-<div class="container">
-        <div class="col">
+
         <div class="card login-card">
             <div class="row no-gutters">
                 <div class="col">
-                    <img src="/assets/img/auth/login.jpg" height="300" alt="login" class="img-fluid image rounded">
+                    <img src="/assets/img/auth/AdminLTElogo.png" height="300" alt="login" class="img-fluid image rounded">
                 </div>
                 <div class="card-img-overlay">
                 <div class="col">
@@ -57,6 +56,4 @@
                 </div>
             </div>
         </div>
-        </div>
-    </div>
 @endsection

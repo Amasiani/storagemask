@@ -28,22 +28,24 @@ class CalProfit extends Command
      */
     public function handle(): void
     {
-        // foreach ($planuserIds as $planuserId){
-            //     foreach ($profits as $profit){
-            //         $profittedUser = Plan::find($planuserId);
-            //         $profittedUser->update(['profit' => $profit]);
-            //     }
-            // }
+        $profitController = new ProfitController();
+        //$planuserIds = $profitController->getusers();
+        //$profits = $profitController->CalProfits();
+        //if ($planuserIds != null) {
+        //    for ($i = 0; $i <= count($profits); $i++) {
+        //        $profittedUser = PlanUser::find($planuserIds[$i]); // finding user to update
+        //        $profittedUser->update(['profit' => $profits[$i]]); //updating profit;
+        //    };
+        //}
 
-        $profitController = new ProfitController;
+        $planuserIds = $profitController->getusers()->toArray(); //convert planIds to array
+        if ($planuserIds != null){
+            $planUser_array = PlanUser::find($planuserIds)->toArray(); // collection converted to array
 
-        $planuserIds = $profitController->getusers();
-        $profits = $profitController->CalProfits();
-        if ($planuserIds != null) {
-            for ($i = 0; $i <= count($profits); $i++) {
-                $profittedUser = PlanUser::find($planuserIds[$i]); // finding user to update
-                $profittedUser->update(['profit' => $profits[$i]]); //updating profit;
-            };
+            for ($i=0; $i<count($planUser_array); $i++){
+                    PlanUser::where('id',  $planuserIds[$i])->update(
+                        ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]);
+            }            
         }
     }
 }

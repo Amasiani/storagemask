@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class RoleUserController extends Controller
 {
     //
+    public function index()
+    {
+        return view('admin.roleusers.index', Role::all());
+    }
+
     public function assignRoleCreate(Request $request)
     {
         return view('admin.roleusers.create',
@@ -27,6 +32,6 @@ class RoleUserController extends Controller
             'role_id' => $user->roles()->sync($request->roles),
         ]);
 
-        return redirect()->route('admin.investments.index')->with('success', 'Role assigned');
+        return redirect()->route('admin.users.index')->with('success', 'Role assigned');
     }
 }

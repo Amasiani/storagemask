@@ -10,15 +10,15 @@ use App\Models\Referral;
 class ReferralController extends Controller
 {
     //
+    public function index()
+    {
+        return view('admin.referrals.index',
+        ['referrals' => Referral::paginate(10)]);
+    }
+    
     public function generateReferralCode()
     {
         $referralCode = strtoupper(Str::random(8)); // Generate a random referral code
         return $referralCode;
-    }
-
-    public function index()
-    {
-        return view('index',
-        ['referrals' => Referral::paginate(10)]);
     }
 }

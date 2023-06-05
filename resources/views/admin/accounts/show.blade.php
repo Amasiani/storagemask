@@ -1,5 +1,5 @@
 @extends('adminTemp')
-
+@section('title', 'Show Account')
 @section('content')
 <section style="padding-top:5px;">
         <div class="row">
