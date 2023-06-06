@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admintemp')
 @section('title', Create User)
 @section('content')
 <section style="padding-top:10px;">

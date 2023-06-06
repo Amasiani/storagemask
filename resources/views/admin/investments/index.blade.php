@@ -1,4 +1,4 @@
-@extends('adminTemp')
+@extends('admintemp')
 @section('title', 'Investments')
 @section('content')
     <div class="card login-card" max-width="780px">

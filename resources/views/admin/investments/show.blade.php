@@ -1,5 +1,5 @@
 @extends('template')
-
+@section('title', 'Show investement')
 @section('content')
 <section style="padding-top:5px;">
         <div class="row">
