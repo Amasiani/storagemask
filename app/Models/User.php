@@ -24,7 +24,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'referral_id'
+        'phone',
+        'link',
     ];
 
     /**
@@ -49,7 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use EagerLoadPivotTrait;
     public function plans()
     {
-        return $this->belongsToMany(Plan::class)->withPivot('investment', 'profit')->withTimestamps();
+        return $this->belongsToMany(Plan::class)->withPivot('investment', 'profit', 'plan_profit')->withTimestamps();
     }
 
     public function network()
@@ -64,7 +65,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function referral()
     {
-        return $this->hasOne(Referral::class);
+        return $this->hasMany(Referral::class);
+    }
+
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class);
+    }
+    
+    public function cashwithdrawals()
+    {
+        return $this->hasMany(Cashwithdrawal::class);
     }
 
     /**
@@ -80,7 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if the user has aa role
+     * Check if the user has a role
      * @param string $role
      * @return bool
      */

@@ -9,6 +9,7 @@ use App\Models\Account;
 use App\Models\Network;
 use App\Models\PlanUser;
 use App\Models\Referral;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -31,7 +32,7 @@ class HomeController extends Controller
                     'accounts' => Account::paginate(10),
                     'users' => User::paginate(10),
                     'investments' => PlanUser::paginate(10),
-                    'networks' => Network::paginate(10),
+                    //'networks' => Network::paginate(10),
                     'referrals' => Referral::paginate(10),
                     'roles' => Role::paginate(10),
                     'plans' => Plan::paginate(10),
@@ -50,5 +51,19 @@ class HomeController extends Controller
     public function welcome(){
         return view('welcome',
         ['plans' => Plan::all()]);
+    }
+
+    public function depositCrypto(Request $request)
+    {
+        if (!$request->ajax()){
+            return view('fund');
+        }
+        $userAccount = Account::where('user_id', auth()->user()->id)->first();
+        $newBalance = $userAccount + $request->amount;
+        $accountUser = Account::find($userAccount->id);
+        $accountUser->update(['amount' => $newBalance]);
+        return response()->json([
+            'updatedAmount' => auth()->user()->account->amount,
+        ]);
     }
 }

@@ -13,7 +13,7 @@ class Referral extends Model
 
     protected $fillable = [
         'user_id',
-        'link',
+        'email',
     ];
 
     public function user()

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Plan;
 use App\Models\PlanUser;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\User;
 
 class ProfitController extends Controller
 {
@@ -45,6 +48,7 @@ class ProfitController extends Controller
         //     }, $planProfits, $investments);
         // }
         //dd($planuserCollection);
+        //$profits = PlanUser::where('user_id', auth()->user()->id)->get()->pluck('profit')->sum();
         if ($planuserCollection != null) {
             for ($i = 0; $i < $planuserCollection->count(); $i++) {
                 $investment = PlanUser::find($planuserCollection[$i])->value('investment');
@@ -60,13 +64,23 @@ class ProfitController extends Controller
     public function updateprofit(): void
     {
         $planuserCollection = $this->getusers()->toArray(); //convert planIds to array
-        if ($planuserCollection != null){
+        if ($planuserCollection != null) {
             $planUser_array = PlanUser::find($planuserCollection)->toArray(); // collection converted to array
 
-            for ($i=0; $i<count($planUser_array); $i++){
-                    PlanUser::where('id',  $planuserCollection[$i])->update(
-                        ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]);
-            }            
+            for ($i = 0; $i < count($planUser_array); $i++) {
+                PlanUser::where('id',  $planuserCollection[$i])->update(
+                    ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]
+                );
+            }
         }
+    }
+
+    public function usertotalProfit(Request $request)
+    {
+        $userIds = PlanUser::where('updated_at', '<=', Carbon::now()->subHours(24))->get()->pluck("user_id");
+        $totalProfits = PlanUser::where('user_id', $userIds)->get()->pluck('profit')->sum(); //->pluck('total_profit'); //this is wrong!!!
+        $currentUser = Account::where('user_id', $userIds);
+        $currentUser->update(['total_profit' => $totalProfits]);
+        PlanUser::where('user_id', auth()->user()->id)->update(['profit' => null]);
     }
 }

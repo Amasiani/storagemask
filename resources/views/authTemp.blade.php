@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="{{ route('admin.assign') }}">Roles</a></li> 
-            <li><a class="dropdown-item" href="{{ route('admin.referrals.index') }}">Referrals</a></li>
+            <li><a class="dropdown-item" href="{{ route('admin.index') }}">Referrals</a></li>
             @endcanany
             <li>
               <hr class="dropdown-divider">

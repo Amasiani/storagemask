@@ -1,0 +1,183 @@
+.sections {
+    padding-top: 1rem;
+    padding-bottom: 1rem
+}
+
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section {
+    display: block
+}
+
+.containers {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto
+}
+
+.sections {
+    padding: .5rem 0
+}
+
+.cards {
+    border: none
+}
+
+.cards .cards-img {
+    position: relative
+}
+
+.cards .cards-img .cards-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    background: linear-gradient(to bottom, transparent 0%, transparent 25%, transparent 35%, rgba(55, 92, 196, 0.9) 100%);
+    transition: all 0.5s ease
+}
+
+.cards-pil {
+    border-radius: 50px;
+}
+
+.cards-pil .inter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards-pil .inter .txt {
+    padding-left: 1rem;
+}
+
+.cards-pil .inter .txt h5 {
+    font-size: 18px;
+    margin: 0;
+    color: #3e8cb3;
+}
+
+.hoverable {
+    transition: box-shadow .25s
+}
+
+.hoverable:hover {
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)
+}
+
+.cards-panel,.hoverable {
+    -webkit-transition: box-shadow .25s
+}
+
+
+.animate.fadeLeft {
+    -webkit-animation: fadeLeft;
+    animation: fadeLeft;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+.margin {
+    margin: 0!important
+}
+
+i.medium {
+    font-size: 4rem
+}
+.card,.card.large,.card.medium,.card.small {
+    position: relative
+}
+
+.card.large .card-image,.card.medium .card-image,.card.small .card-image {
+    overflow: hidden;
+    max-height: 60%
+}
+
+.card.large .card-image+.card-content,.card.medium .card-image+.card-content,.card.small .card-image+.card-content {
+    max-height: 40%
+}
+
+.card.large .card-content,.card.medium .card-content,.card.small .card-content {
+    overflow: hidden;
+    max-height: 100%
+}
+
+.card.large .card-action,.card.medium .card-action,.card.small .card-action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+.card.medium {
+    height: 400px
+}
+
+.card.horizontal.large .card-image img,.card.horizontal.medium .card-image img,.card.horizontal.small .card-image img {
+    height: 100%
+}
+.card .card-content .card-title i.material-icons {
+    cursor: pointer;
+  }
+
+  #intro .modal .modal-close span i.material-icons {
+    font-size: 16px;
+    position: relative;
+    top: 2px;
+    margin-left: 5px
+}
+
+#intro .modal .modal-content .carousel.carousel-slider .carousel-fixed-item i.material-icons {
+    line-height: 1;
+    position: relative;
+    top: 4px
+}
+
+#intro .modal .modal-content .carousel.carousel-slider .carousel-item.slide-3 ul.feature-list li i.material-icons {
+    position: relative;
+    top: 7px;
+    color: #8e24aa
+}
+
+.breadcrumb [class*=mdi-],.breadcrumb [class^=mdi-],.breadcrumb i,.breadcrumb i.material-icons {
+    font-size: 24px;
+    display: inline-block;
+    float: left
+}
+
+.material-icons {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga'
+}
+
+nav ul a.btn-flat>.material-icons,nav ul a.btn-floating>.material-icons,nav ul a.btn-large>.material-icons,nav ul a.btn-small>.material-icons,nav ul a.btn>.material-icons {
+    line-height: inherit;
+    height: inherit
+}
+
+.ux-icon {
+    background: #1282B9;
+    font-size: 28px !important;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.font-main-color {
+    color: #0D1727 !important;
+}
+
+.gradient-45deg-light-blue-teal.gradient-shadow {
+    box-shadow: 0 6px 20px 0 rgba(100, 255, 218, .5)!important
+}
+
+.white {
+    color: #ffffff !important;
+}
+
+@media only screen and (min-width: 993px) {
+    .row .col.l1,.row .col.l10,.row .col.l11,.row .col.l12,.row .col.l2,.row .col.l3,.row .col.l4,.row .col.l5,.row .col.l7,.row .col.l8,.row .col.l9 {
+        right:auto;
+        left: auto;
+        margin-left: auto}
+}

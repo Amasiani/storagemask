@@ -13,7 +13,7 @@ class InvestmentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'auth.isAdmin'])->except('create', 'store');
+        $this->middleware(['auth', 'verified', 'auth.isAdmin'])->except('myInvestments', 'create', 'store');
     }
     
     /**
@@ -28,7 +28,7 @@ class InvestmentController extends Controller
         */
           
         return view('admin.investments.index', [
-            'planuser' => PlanUser::paginate(10),
+            'planusers' => PlanUser::paginate(10),
             'user' => auth()->user(),
             'plans' => Plan::paginate(10),
             'accounts' => Account::paginate(10),
@@ -57,7 +57,7 @@ class InvestmentController extends Controller
         * populating pivot table through pivot table mode
        */
       
-        $plans = Plan::all(); //Call plans model and retrieve all plans
+        $plans = Plan::where('id', $request->plan_id)->get(); //get request plan
         $currentUser = auth()->user(); //calling current Auth user
         $userAccount = Account::where('user_id', '=', $currentUser->id); // Getting currentuser Account model (object)
        
@@ -115,5 +115,12 @@ class InvestmentController extends Controller
     public function destroy(InvestmentController $investment)
     {
         //
+    }
+
+    public function myInvestments()
+    {
+        return view('admin.investments.myInvestments',[
+            'planUser' => PlanUser::where('user_id', auth()->user()->id)->get(),
+        ]);
     }
 }

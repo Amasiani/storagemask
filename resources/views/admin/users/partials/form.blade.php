@@ -39,7 +39,7 @@
 @can('is-editor')
 <div class="col-md-6">                                                                        
     <select name="churches[]" id="church" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-        <option>--Select church--</option>
+        <option>--Select User--</option>
         @foreach($users as $user)                                        
             <option value="{{ $church->id }}" id="{{ $church->name }}" @isset($user) @if(in_array($church->id, $user->churches->pluck('id')->toArray())) selected @endif @endisset>{{ $church->name }}</option>                                   
         @endforeach

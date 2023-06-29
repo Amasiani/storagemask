@@ -8,9 +8,9 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group mb-2">
-                        <label for="referral_id" class="sr-only text-white">Referral code</label>
-                        <input type="text" name="referral_id" id="referral_id" class="form-control @error('referral_id') is-invalid @enderror" placeholder="Referral Code" autofocus>
-                        @error('referral_id')
+                        <label for="referrer_link" class="sr-only text-white">Referral link</label>
+                        <input type="text" name="referrer_link" id="referrer_link" class="form-control @error('referrer_link') is-invalid @enderror" placeholder="Referral Code" autofocus>
+                        @error('referrer_link')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -27,8 +27,17 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="email" class="sr-only text-white">Email</label>
-                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror"" placeholder=" Email Address" autofocus>
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder=" Email Address" autofocus>
                         @error('email')
+                        <span class="invalid-feedback is-invalid" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="phone" class="sr-only text-white">Telephone</label>
+                        <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder=" Telephone number" autofocus>
+                        @error('phone')
                         <span class="invalid-feedback is-invalid" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

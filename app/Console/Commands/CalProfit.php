@@ -39,13 +39,14 @@ class CalProfit extends Command
         //}
 
         $planuserIds = $profitController->getusers()->toArray(); //convert planIds to array
-        if ($planuserIds != null){
+        if ($planuserIds != null) {
             $planUser_array = PlanUser::find($planuserIds)->toArray(); // collection converted to array
 
-            for ($i=0; $i<count($planUser_array); $i++){
-                    PlanUser::where('id',  $planuserIds[$i])->update(
-                        ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]);
-            }            
+            for ($i = 0; $i < count($planUser_array); $i++) {
+                PlanUser::where('id',  $planuserIds[$i])->update(
+                    ['profit' => $planUser_array[$i]['profit'] + ($planUser_array[$i]['plan_profit'] * $planUser_array[$i]['investment'])]
+                );
+            }
         }
     }
 }

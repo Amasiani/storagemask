@@ -1,0 +1,268 @@
+/* my new color classes */
+
+.main-color {
+    background: #0D1727 !important;
+    /* background: linear-gradient(130deg,#0D1727,#747149) !important; */
+}
+
+.success {
+    background: rgb(4, 102, 4);
+    color: #fff;
+    font-size: 18px;
+}
+
+.danger {
+    background: rgb(231, 36, 36);
+    color: #fff;
+    font-size: 18px;
+}
+
+.font-main-color {
+    color: #0D1727 !important;
+}
+
+.mt-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 5px;
+    float: left;
+    margin-right: .5em;
+}
+
+.white {
+    color: #ffffff !important;
+}
+
+.m_btn {
+    width: 100%;
+    background: #01C0D9;
+    text-align: center;
+    padding: 7px 0;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.modal .modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal .modal-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.buy_modal .modal-content {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.buy_modal .modal-content h4 {
+    padding: 15px 0;
+    text-align: center;
+    color: #ffffff;
+    background-color: #0D1727;
+}
+
+.buy_modal .modal-content .inner-content {
+    padding: 10px 2em;
+}
+
+.buy_modal .modal-content .coin-logo {
+    float: left;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.buy_modal .modal-content .coin-logo img {
+    width: 5em;
+    border-radius: 5px;
+}
+
+.buy_modal .modal-content .details h5 {
+    font-size: 1em;
+    font-weight: bolder;
+    color: #bebebe;
+}
+
+.buy_modal .modal-content .details h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.buy_modal .modal-content .details small {
+    color: #bebebe;
+    text-transform: uppercase;
+    margin-top: 0em;
+}
+
+.buy_modal hr {
+    border: .5px solid rgb(221, 215, 215);
+}
+
+.buy_modal p {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.buy_modal .amt {
+    margin-top: 1em;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+.buy_modal #purchase_value,
+#purchase_oil_value,
+#purchase_gold_value,
+#purchase_more_value,
+#purchase_stock_value {
+    max-width: 8em !important;
+    border: 2px solid #bebebe;
+    text-align: center;
+    border-radius: 5px;
+    display: table;
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 0 !important;
+}
+
+.buy_modal .buy_txt {
+    color: #000000;
+    font-weight: 900;
+    margin-top: 4em;
+}
+
+.buy_modal .buy_msg strong {
+    color: #0D1727;
+    font-size: 1.3em;
+}
+
+.btn_act {
+    text-align: center;
+    padding: 10px !important;
+    color: #fff !important;
+    border-radius: 5px;
+    border: none;
+}
+
+.preloader-wrapper {
+    display: table;
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0px auto;
+    position: absolute;
+    display: none;
+}
+
+.oil-chart div,
+.oil-chart img {
+    width: 100% !important;
+}
+
+iframe #document html body {
+    display: none !important;
+}
+
+iframe .calc_table {
+    width: 100% !important;
+}
+
+.calc_table a {
+    display: none !important;
+}
+
+.rtn_badge {
+    border-radius: 10px;
+    padding: 10px !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.poweredByWrapper a {
+    display: none !important;
+}
+
+.fromSymbolLabel {
+    display: table !important;
+    display: none !important;
+}
+
+.styledSelect {
+    display: none !important;
+}
+
+.priceLabel {
+    font-size: 18px !important;
+}
+
+#btc_detail {
+    display: none;
+}
+
+.progress {
+    display: none;
+}
+
+.invoice-address .active {
+    background: rgb(16, 206, 16);
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+
+.invoice-address .not {
+    background: rgb(228, 225, 43);
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+
+.invoice-address .suspended {
+    background: rgb(224, 31, 31);
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+
+.card-pil {
+    border-radius: 50px;
+}
+
+.ux-icon {
+    background: #1282B9;
+    font-size: 28px !important;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.card-pil .inter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-pil .inter .txt {
+    padding-left: 1rem;
+}
+
+.card-pil .inter .txt h5 {
+    font-size: 18px;
+    margin: 0;
+    color: #1282B9;
+}
+
+.text-main {
+    color: #1282B9 !important;
+}
+
+.nav-ico {
+    color: #1282B9 !important;
+    border-radius: 100%;
+    margin: 5px;
+    display: block;
+    padding: 0 10px;
+}
+
+.edge {
+    border-radius: 20px;
+}

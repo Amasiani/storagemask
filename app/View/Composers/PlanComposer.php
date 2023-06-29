@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use App\Models\Plan;
+use App\Models\Referral;
 use Illuminate\View\View;
  
 class PlanComposer

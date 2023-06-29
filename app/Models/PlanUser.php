@@ -26,4 +26,9 @@ class PlanUser extends Pivot
         'profit',
         'plan_profit'
     ];
+
+    protected $casts = [
+        'profit' => 'string'
+    ];
+
 }

@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 Accounts
-                <a href="{{ route('admin.accounts.create') }}" role="button" class="btn btn-primary btn-sm mb-2 float-end">Fund user Account</a>
+                <a href="{{ route('fund') }}" role="button" class="btn btn-primary btn-sm mb-2 float-end">Fund user Account</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
