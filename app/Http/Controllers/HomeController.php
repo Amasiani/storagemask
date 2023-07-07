@@ -40,9 +40,14 @@ class HomeController extends Controller
             }
             $planUsers = PlanUser::where('user_id', $user->id)->get();
             $plans = Plan::find($planUsers->pluck('plan_id')->toArray());
+            $planuserPivotArray = auth()->user()->plans->pluck('pivot')->toArray();
+            $investments = data_get($planuserPivotArray, '*.investment');
+            
+            
             return view('dashboard',
             ['planUsers' => $planUsers,
-            'plans' => $plans]);
+            'plans' => $plans,
+            'totalInvestment' =>  $investments]);
         }else{
             return redirect()->route('login');
         }

@@ -3,8 +3,8 @@
 @section('content')
 <section style="padding-top:5px;">
         <div class="row">
-            <div class="col-md-10 offset-1">                
-                <div class="card" style="width: 45rem;">
+            <div class="col-md-10">                
+                <div class="card">
                     <div class="card-header">                        
                             <button class="btn btn-danger float-end"  type="button"
                                 onclick="event.preventDefault();
@@ -16,12 +16,16 @@
                                 @csrf
                                 @method('DELETE')
                             </form>
-
-                        <strong>{{ $user->name }} details </strong>
+                        <strong>{{ Str::ucfirst($user->name) }} details:</strong>
                     </div>
+                    <div class="card-header">
+                        <span class="float-end"><strong>Telephone: {{ $user->phone }}</strong></span>
+                        <a href="mailto:{{ $user->email }}"><span><strong >Email:  {{ $user->email }}</strong></span></a>
+                    </div>
+                    <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Email:  </strong> {{ $user->email }}</li>
                         @if ($userResources->isNotEmpty())
+
                         @foreach($userResources as $userResource)
                         <li class="list-group-item"><strong>Investment:  </strong>{{ $userResource->investment }}</li>
                         <li class="list-group-item"><strong>Profit:  </strong>{{ $userResource->profit }}</li>
@@ -30,6 +34,7 @@
                         @else
                     </ul>
                     @endif
+                    </div>
                     <div class="card-body text-end">
                         <a href="{{ url('/home') }}" class="card-link">Back</a>
                     </div>

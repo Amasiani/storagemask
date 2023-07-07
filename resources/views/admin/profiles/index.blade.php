@@ -91,7 +91,9 @@
                     <div class="row row-cols-2 justify-items-evenly">
                         <div class="col">    
                              <div class="card-body">
+                                @isset(auth()->user()->account)
                                 <h5 class="card-text">${{ auth()->user()->account->amount }}</h5>
+                                @endisset
                                 <p class="card-text text-muted">Account Deposit</p>
                             </div>
                         </div>
@@ -106,7 +108,9 @@
                     <div class="row row-cols-2 justify-items-evenly">
                         <div class="col">    
                              <div class="card-body">
-                                <h5 class="card-text">${{ $planUser->value('investment') }}</h5>
+                            
+                                <h5 class="card-text">${{ array_sum($investments) }}</h5>
+                              
                                 <p class="card-text text-muted">Total Investment</p>
                             </div>
                         </div>
@@ -121,7 +125,9 @@
                     <div class="row row-cols-2 justify-items-evenly">
                         <div class="col">    
                              <div class="card-body">
+                                @isset(auth()->user()->account)
                                 <h5 class="card-text">${{ auth()->user()->account->total_profit }}</h5>
+                                @endisset
                                 <p class="card-text text-muted">Total Profit</p>
                             </div>
                         </div>

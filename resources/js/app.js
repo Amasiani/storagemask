@@ -2,6 +2,7 @@
 
 import './bootstrap';
 import '../css/app.css';
+import './custom';
 
 //import * as bootstrap from 'bootstrap';
 

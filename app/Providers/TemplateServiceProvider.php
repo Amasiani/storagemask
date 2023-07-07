@@ -38,5 +38,9 @@ class TemplateServiceProvider extends ServiceProvider
             //$referrals = $referred->where('referral_id', $referralId);
             //$view->with('referred', $referrals);
         });
+
+        View::composer('fundpartial.form', function($view){
+            $view->with('users', User::all());
+        });
     }
 }

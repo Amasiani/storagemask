@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Cashwithdrawal;
+use App\Http\Controllers\Controller;
 
 class CashwithdrawalController extends Controller
 {
@@ -13,6 +15,8 @@ class CashwithdrawalController extends Controller
     public function index()
     {
         //
+        return view('admin.cashwithdrawals.index',
+        ['withdrawalrequests' => Cashwithdrawal::paginate(20)]);
     }
 
     /**
@@ -38,6 +42,13 @@ class CashwithdrawalController extends Controller
     public function show(string $id)
     {
         //
+        $cashRequest = Cashwithdrawal::find($id);
+
+        $userName = User::where('id', $cashRequest->user_id)->value('name');
+        return view('admin.cashwithdrawals.show',
+        ['cashwithdrawal' => $cashRequest,
+        'username' => $userName
+        ]);
     }
 
     /**
@@ -62,5 +73,7 @@ class CashwithdrawalController extends Controller
     public function destroy(string $id)
     {
         //
+        Cashwithdrawal::destroy($id);
+        return redirect()->route('admin.cashwithdrawals.index')->with('success', 'Request deleted!!!');
     }
 }

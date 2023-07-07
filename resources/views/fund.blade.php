@@ -3,6 +3,33 @@
 @section('content')
 <section style="padding-top:5px;">
     <div class="container-fluid">
+        <div class="row justify-items-evenly">
+            <div class="col-md-10 py-2">
+                <div class="card" style="max-width: 900px;">
+                    <div class="card-header">
+                        <strong>Create Account</strong>
+                        <a href="{{ route('admin.accounts.index') }}" role="button" class="btn float-end">Back</a>
+                    </div>
+                    <div class="card-body">
+                        @if(Session::has('message_sent'))
+                        <div class="alert-session" role="alert">
+                            {{Session::get('message_sent')}}
+                        </div>
+                        @endif
+                        <form method="POST" action="{{route('admin.accounts.store')}}" enctype="multipart/form-data">
+                            @csrf
+                            @include('fundpartial.form')
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection('content')
+<!-- <section style="padding-top:5px;">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-5 mb-6">
                 <div class="card">
@@ -74,5 +101,4 @@
             </div>
         </div>
     </div>
-</section>
-@endsection('content')
+</section> -->

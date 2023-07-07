@@ -24,7 +24,9 @@ class PlanUser extends Pivot
         'user_id',
         'investment',
         'profit',
-        'plan_profit'
+        'plan_profit',
+        'payment_type',
+        'status',
     ];
 
     protected $casts = [

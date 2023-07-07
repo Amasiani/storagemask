@@ -25,10 +25,8 @@
                     <div class=" card cards-pil padding-4 hoverable animate fadeLeft" title="Total Earnings">
                         <div class="inter" >
                             <div class="txt">
-                            @foreach (auth()->user()->plans as $plan)
-                                <h5 class="m-0" style="padding-left: 10px; padding-top: 4px;">${{ $plan->pivot->investment }}</h5>
+                                <h5 class="m-0" style="padding-left: 10px; padding-top: 4px;">${{ array_sum($totalInvestment) }}</h5>
                                 <p class="no-margin" style="padding-left: 4px;">Total Investment</p>
-                                @endforeach
                             </div>
                             <div class="" style="margin:4px">
                                 <i class="medium material-icons ux-icon font-main-color gradient-shadow white-text">shopping_cart</i>

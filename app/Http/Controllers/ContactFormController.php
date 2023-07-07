@@ -66,7 +66,7 @@ class ContactFormController extends Controller
         ];
 
         Mail::to('kristentracey26@gmail.com')->send(new DepositMail($details));  //send $request details to email. 
-        return response()->json(['massege' => 'Message sent successfully'], 200);
+        return response()->json(['message' => 'Payment is processing, check your email for status update.'], 200);
     }
 
     public function withdrawalRequest(Request $request)

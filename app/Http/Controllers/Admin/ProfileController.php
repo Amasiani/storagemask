@@ -16,7 +16,13 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        return view('admin.profiles.index', ['planUser' => PlanUser::where('user_id', auth()->user()->id)]);
+        $planuserPivotArray = auth()->user()->plans->pluck('pivot')->toArray();
+        $investments = data_get($planuserPivotArray, '*.investment');
+            
+        return view('admin.profiles.index', [
+            //'planUser' => PlanUser::where('user_id', auth()->user()->id),
+            'investments' => $investments,
+        ]);
 
     }
 

@@ -6,7 +6,7 @@
         <div class="card mb-3" style="max-width: 900px;">
             <div class="card-header">
                 <strong>Investment</strong>
-                @canany(['isAdmin'])
+                @canany(['is-admin'])
                 <a href="{{ route('admin.investments.index') }}" role="button" class="btn mb-2 float-end">Back</a>
                 @endcanany
                 <a href="{{ url('/home') }}" role="button" class="btn mb-2 float-end">Back</a>

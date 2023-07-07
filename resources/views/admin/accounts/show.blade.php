@@ -3,8 +3,8 @@
 @section('content')
 <section style="padding-top:5px;">
     <div class="row">
-        <div class="col-md-10 offset-1">
-            <div class="card" style="width: 45rem;">
+        <div class="col">
+            <div class="card">
                 <div class="card-header">
                     <button class="btn btn-danger float-end" type="button" onclick="event.preventDefault();
                                 document.getElementById('delete-account-form{{ $account }}').submit()">
@@ -15,11 +15,11 @@
                         @csrf
                         @method('DELETE')
                     </form>
-
-                    <strong>{{ $account->amount }} details </strong>
+                    <h3><strong>Name: </strong>{{ Str::ucfirst($account->user->name) }}</h3>
+                    
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Name:</strong> {{ $account->user->name }}</li>
+                    <li class="list-group-item"><strong>Amount: </strong>${{ $account->amount }}</li>
                 </ul>
                 <div class="card-body text-end">
                     <a href="{{ route('admin.accounts.index') }}" class="card-link">Back</a>

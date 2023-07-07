@@ -3,7 +3,7 @@
 // import axios from 'axios';
 
 var depositInput = document.getElementById('label_dp');
-depositInput.addEventListener("click", () => {
+depositInput.addEventListener('click', () => {
     var amt = document.getElementById('dp_amount').value;
     const pay_type = document.getElementById('pay_type').value;
     var btc = parseFloat(amt / 26775.29).toFixed(5);
@@ -68,7 +68,45 @@ depositInput.addEventListener("click", () => {
         document.getElementById('btc_detail').classList.remove('d-none');
         document.getElementById('label_dp').style.display = 'none';
     }
-});   
+}); 
+
+    var copyme = document.getElementById('copy');
+    copyme.addEventListener('click', () =>  {
+        var walletAddress = document.getElementById('wallet-id').value;
+        document.execCommand('copy');
+        document.getElementById('copy').innerHTML = 'Wallet copied';
+        setTimeout(() => {
+            document.getElementById('copy').innerHTML = 'Copy Address';
+        }, 2000);
+    });
+
+    var sendDetails = document.getElementById('paid');
+    sendDetails.addEventListener('click', () => {
+        var amt = document.getElementById('dp_amount').value;
+        var pay_type = document.getElementById('pay_type').value;
+        axios.get("/fund", {
+                params: { amount: amt,
+                    pay_type: pay_type,
+                },
+        }).then((response) => {
+            var msg = response.data.message;
+            alert(msg);
+            })
+            .catch((error) => {
+                console.log(error.response);
+            });
+    });
+
+    var statusChanger = document.getElementById('statuschange');
+        statusChanger.addEventListener('click', () => {
+            if (statusChanger.innerHTML == "Activate" &  statusChanger.style.backgroundColor == "green"){
+                statusChanger.innerHTML = "Deactivate";
+                statusChanger.style.backgroundColor = "red";
+            }else{
+                statusChanger.innerHTML = "Activate";
+                statusChanger.style.backgroundColor = "green";
+            }
+        });
 
 
     // function copyToClipboard() {
@@ -94,32 +132,6 @@ depositInput.addEventListener("click", () => {
     //             console.error("Unable to copy text: ", error);
     //         });
     // }
-
-    var copyme = document.getElementById('copy');
-    copyme.addEventListener('click', () =>  {
-        var walletAddress = document.getElementById('wallet-id').value;
-        document.execCommand('copy');
-        document.getElementById('copy').innerHTML = 'Wallet copied';
-        setTimeout(() => {
-            document.getElementById('copy').innerHTML = 'Copy Address';
-        }, 2000);
-    });
-
-    var sendDetails = document.getElementById('paid');
-    sendDetails.addEventListener('click', () => {
-        var amt = document.getElementById('dp_amount').value;
-        var pay_type = document.getElementById('pay_type').value;
-        axios.get("/fund", {
-                params: { amount: amt,
-                    pay_type: pay_type,
-                },
-        }).then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error.response);
-            });
-    });
 
 // $(document).ready(function() {
 //     $('#deposit').click(function(e) {

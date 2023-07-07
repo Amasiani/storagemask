@@ -18,6 +18,9 @@ use App\Http\Controllers\Admin\InvestmentController;
 use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\CashwithdrawalController;
+use App\Http\Controllers\PagesController;
+use App\Models\User;
+use Illuminate\Contracts\Pagination\Paginator;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +38,21 @@ Route::get('/devop', function(){
     view('devop', dd(['accountuser' => $accountuser->id]));
 });
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+
+/**
+ * pages route for static pages on the welcome page
+ */
+Route::get('/plans', [PagesController::class, 'plans'])->name('plans');
+Route::get('/our_numbers', [PagesController::class, 'our_numbers'])->name('our_numbers');
+Route::get('/award', [PagesController::class, 'award'])->name('award');
+Route::get('/legals/terms', [PagesController::class, 'terms'])->name('terms');
+Route::get('/legals/privacy_policy', [PagesController::class, 'privacy_policy'])->name('privacy_policy');
+Route::get('/legals/withdrawal_policy', [PagesController::class, 'withdrawal_policy'])->name('withdrawal_policy');
+Route::get('/legals/payment_policy', [PagesController::class, 'payment_policy'])->name('payment_policy');
+Route::get('/legals/anti_money', [PagesController::class, 'anti_money'])->name('anti_money');
+Route::get('/legals/conduct', [PagesController::class, 'conduct'])->name('conduct');
+Route::get('about', [PagesController::class, 'about'])->name('about');
+
 
 /**
  * Include admin route
@@ -55,6 +73,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/referrals/referred', [ReferralController::class, 'referred'])->name('referred');
     Route::post('/profiles/updatePassword', [ProfileController::class, 'updatePassword'])->name('updatePassword');
     Route::get('/investments/myInvestments', [InvestmentController::class, 'myInvestments'])->name('myInvestments');
+    Route::get('/deactivate/{user}', [UserController::class, 'deactivate'])->name('deactivate');
+    Route::get('/users/activites', [UserController::class, 'activites'])->name('activites');
     // Route::get('/referrals', [ReferralController::class, 'index'])->name('index');
     //Route::get('admin.accounts.withdrawal', [AccountController::class, 'withdrawal'])->name('withdrawal');
     //Route::get('admin.accounts.adminwithdraw', [AccountController::class, 'withdrawal'])->name('adminwithdraw');

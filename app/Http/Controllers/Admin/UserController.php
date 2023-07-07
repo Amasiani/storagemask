@@ -18,7 +18,7 @@ class UserController extends Controller
     public function __construct()
     {
         //$this->middleware('auth.isAdmin');
-        $this->middleware(['auth.isAdmin'])->only(['index', 'show']);
+        $this->middleware(['auth.isAdmin'])->only(['index', 'show', 'deactivate']);
     }
     
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         return view('admin.users.show',
         ['user' => User::find($id),
-        'userResources' =>  PlanUser::where('id', $id)->get()
+        'userResources' =>  PlanUser::where('user_id', $id)->get()
         ]);
     }
 
@@ -123,5 +123,24 @@ class UserController extends Controller
         //
         User::destroy($id);
         return redirect('admin.users.index')->with('success', 'User deleted');
+    }
+
+    public function deactivate($id)
+    {
+        $user = User::find($id);
+        if ($user->status == true)
+        {
+            $user->update(['status' => false]);
+        }else
+        {
+            $user->update(['status' => true]);
+        }
+        return redirect('/home');
+        
+    }
+
+    public function activites()
+    {
+        return view('admin.users.activites');
     }
 }

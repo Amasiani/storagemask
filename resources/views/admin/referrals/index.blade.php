@@ -3,6 +3,7 @@
 @section('content')
 <section style="padding-top: 5px;">
     <div class="container-fluid">
+        @cannot('is-admin')
         <div class="row gy-4">
             <div class="col-md-4">
                 <div class="card hoverable">
@@ -66,6 +67,36 @@
                 </div>
             </div>
         </div>
-</container>
+        @endcannot
+        @canany('is-admin', 'is-superuser')
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">List of Referrals</div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Referred Email</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    @foreach ($referrals as $referral)
+                                        <th scope="row">1</th>
+                                        <td>{{ $referral->email }}</td>
+                                        <td><a href="{{ route('admin.referrals.show', $referral->id) }}" role="button" class="btn btn-info">Detail</a></td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+        @endcanany
+    </div>
 </section>
 @endsection

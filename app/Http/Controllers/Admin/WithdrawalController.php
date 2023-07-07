@@ -70,7 +70,7 @@ class WithdrawalController extends Controller
         if ($request->wallet == "profits"){
             switch ($profits) {
                 case ($request->amount > $profits):
-                    return redirect()->back()->with('success', 'Your profit balance is low!!!' . ' ' . $profits);
+                    return redirect()->back()->with('success', 'Your profit balance is too low!!!' . ' ' . $profits);
                     break;
     
                 case ($request->wallet == "profits"):
@@ -82,9 +82,9 @@ class WithdrawalController extends Controller
                         'crypto' => $request->crypto,
                         
                     ]);
-                    $currentUser = Account::where('user_id', auth()->user()->id);
+                    $currentUserAccount = Account::where('user_id', auth()->user()->id);
                     $newtotalProfit = $profits - $request->amount;
-                    $currentUser->update(['total_profit' => $newtotalProfit]);
+                    $currentUserAccount->update(['total_profit' => $newtotalProfit]);
 
                     $notice = new ContactFormController;
                     $notice->withdrawalRequest($request);
@@ -97,7 +97,7 @@ class WithdrawalController extends Controller
         }
         switch ($deposits) {
             case ($request->amount > $deposits):
-                return redirect()->back()->with('success', 'Your deposit balance is low!!!' . ' ' . $deposits);
+                return redirect()->back()->with('success', 'Your deposit balance is too low!!!' . ' ' . $deposits);
                 break;
 
             case ($request->wallet == "deposits"):
@@ -111,7 +111,7 @@ class WithdrawalController extends Controller
                 $newtotalDeposit =  $deposits - $request->amount;
                 $userAccount = Account::where('user_id', auth()->user()->id);
                 $userAccount->update(['amount' => $newtotalDeposit]);
-                return redirect()->back()->with('success', 'Your transition successful' ); // send the admin email of he user deatils
+                return redirect()->back()->with('success', 'Your transition was successful' ); // send the admin email of he user deatils
                 break;
             default:
                 echo "It all worked out well for deposits";

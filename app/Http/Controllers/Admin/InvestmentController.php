@@ -26,7 +26,7 @@ class InvestmentController extends Controller
          * retriving date from customized pivot table
          * $users = User::with('podcasts')->get();
         */
-          
+        
         return view('admin.investments.index', [
             'planusers' => PlanUser::paginate(10),
             'user' => auth()->user(),
@@ -50,38 +50,32 @@ class InvestmentController extends Controller
      */
     public function store(Request $request)
     {
-        //$userAccount_amounts = $userAccount->pluck('amount'); //retrive 'amount' in user account from the Accounts table.
-        //for ($i=0; $i<$userAccount_amounts->count(); $i++)
-            //$userAccount_amounts[$i];
-        /**
-        * populating pivot table through pivot table mode
-       */
-      
-        $plans = Plan::where('id', $request->plan_id)->get(); //get request plan
-        $currentUser = auth()->user(); //calling current Auth user
-        $userAccount = Account::where('user_id', '=', $currentUser->id); // Getting currentuser Account model (object)
-       
-        $userAccount_amount = $userAccount->value('amount'); //value() retrives value of attribute from a colloction. 
-        foreach ($plans as $plan)
-        if (isset($userAccount_amount)) {
-            if ($userAccount_amount < $plan->min_deposit
-            ) {
-                return redirect()->route('admin.accounts.index')->with('success', 'Your balance is to low to invest!');
-            } else {
-                $userNewBalance =  $userAccount_amount - $request->amount; //subtracting the invested amount from the available balance 
+        $plan = Plan::where('id', $request->plan_id)->get(); //get request plan
+        $userAccount = Account::where('user_id', '=', auth()->user()->id); // Getting currentuser Account model (object)
+
+        switch ($request->amount) {
+            case ( $request->amount  > auth()->user()->account->amount):
+                return redirect()->back()->with('success', 'Your balance is to low to invest!');
+                break;
+            case ($request->amount < $plan->value('min_deposit')):
+                return redirect()->back()->with('success', 'Your cannot invest less that the Plan minimum deposit!' . ' ' . '$' .$plan->value('min_deposit'));
+                break;
+            default:
+                $userNewBalance =  auth()->user()->account->amount - $request->amount; //subtracting the invested amount from the available balance 
                 $userAccount->update([
                     'amount' => $userNewBalance
                 ]);
                 PlanUser::create([
                     'plan_id' => $request->plan_id,
-                    'user_id' => $currentUser->id,
+                    'user_id' => auth()->user()->id,
                     'investment' => $request->amount,
-                    'plan_profit' => $plan->profit,
+                    'plan_profit' => $plan->value('profit'),
+                    'payment_type' => $request->payment_type,
                 ]);
 
                 return redirect()->back()->with('success', 'You have invested and your Account updated!');
-            }
-        } else return redirect()->back()->with('success', 'Fund your account!');
+                break;
+        }
     }
 
     /**
@@ -119,8 +113,13 @@ class InvestmentController extends Controller
 
     public function myInvestments()
     {
+        $planuserPivotArray = auth()->user()->plans->pluck('pivot')->toArray();
+        $investments = data_get($planuserPivotArray, '*.investment');
+        
         return view('admin.investments.myInvestments',[
-            'planUser' => PlanUser::where('user_id', auth()->user()->id)->get(),
+            'planUsers' => PlanUser::where('user_id', auth()->user()->id)->get(),
+            'investments' => $investments,
+           
         ]);
     }
 }

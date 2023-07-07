@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col">
                 <div class="brand-wrapper">
-                    <img src="/assets/dist/img/photo4.jpg" alt="logo" class="img-fluid rounded float-start">
+                    <img src="/assets/img/logo.svg" alt="logo" class="img-fluid rounded float-start">
                 </div>
             </div>
             <div class="col">

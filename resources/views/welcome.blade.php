@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <title>Storagetemasek :: INVEST AND GROW</title>
+    <title>Dential Capital :: INVEST AND GROW</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Invest with an algo-trading firm you can trust and make the most out of your money. Unique results coupled with 24/7 monitoring of your funds is assured!. We are responsible for more than just executing trades in the market on behalf of our clients. We build for our clients." />
     <meta name="keywords" content="Storagetemasek, trade, investment, crypto, Creative" />
 
+    <!-- Google iconfont -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/tiny-slider.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/assets/css/line.css" />
@@ -23,9 +29,9 @@
     @vite('resources/js/app.js')
 </head>
 
-<body style="background: #000000">
+<body style="background: #ADD8E6">
     <!-- Navbar STart -->
-    <a href="https://wa.me/message/GX4MMQU3JIZAJ1" title="Chat on WhatsApp" style="
+    <a href="https://wa.me/+2348183209325" title="Chat on WhatsApp" style="
         position: fixed;
         z-index: 3;
         border-radius: 100%;
@@ -39,7 +45,7 @@
     <header id="topnav" class="defaultscroll sticky tagline-height">
         <div class="container">
             <!-- Logo container-->
-            <a class="logo" href="/home">
+            <a class="logo" href="/">
                 <img src="/assets/img/logo.svg" height="50" style="max-width: 180px" alt="" />
             </a>
             <!-- End Logo container-->
@@ -68,26 +74,26 @@
                         <a href="javascript:void(0)">For Investors</a><span class="menu-arrow"></span>
                         <ul class="submenu">
                             <li>
-                                <a href="/plans" class="sub-menu-item">Investment Plans</a>
+                                <a href="{{ route('plans') }}" class="sub-menu-item">Investment Plans</a>
                             </li>
 
                             <li>
-                                <a href="/our_numbers" class="sub-menu-item">Storagetemasek in Numbers</a>
+                                <a href="{{ route('our_numbers') }}" class="sub-menu-item">Dential Capital in Numbers</a>
                             </li>
 
-                            <li><a href="/award" class="sub-menu-item">Awards</a></li>
+                            <li><a href="{{ route('award') }}" class="sub-menu-item">Awards</a></li>
 
                             <li class="has-submenu parent-menu-item">
                                 <a href="javascript:void(0)">Legals</a><span class="submenu-arrow"></span>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="/terms" class="sub-menu-item">Terms and Services</a>
+                                        <a href="{{ route('terms')  }}" class="sub-menu-item">Terms and Services</a>
                                     </li>
                                     <li>
-                                        <a href="/privacy_policy" class="sub-menu-item">Privacy Policy</a>
+                                        <a href="{{ route('privacy_policy')  }}" class="sub-menu-item">Privacy Policy</a>
                                     </li>
                                     <li>
-                                        <a href="/withdrawal_policy" class="sub-menu-item">Withdrawal Policy</a>
+                                        <a href="{{ route('withdrawal_policy')  }}" class="sub-menu-item">Withdrawal Policy</a>
                                     </li>
                                     <li>
                                         <a href="/payment_policy" class="sub-menu-item">Payment Policy
@@ -95,11 +101,11 @@
                                     </li>
 
                                     <li>
-                                        <a href="/anti_money" class="sub-menu-item">Anti Money Laundering
+                                        <a href="{{ route('anti_money')  }}" class="sub-menu-item">Anti Money Laundering
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/conduct" class="sub-menu-item">Code of Conduct
+                                        <a href="{{ route('conduct')  }}" class="sub-menu-item">Code of Conduct
                                         </a>
                                     </li>
                                 </ul>
@@ -113,10 +119,10 @@
                             <li>
                                 <ul>
                                     <li>
-                                        <a href="/about" class="sub-menu-item">About Storagetemasek</a>
+                                        <a href="{{ route('about')  }}" class="sub-menu-item">About Dential Capital</a>
                                     </li>
                                     <li>
-                                        <a href="/contact" class="sub-menu-item">Contact Us</a>
+                                        <a href="{{ route('contact')  }}" class="sub-menu-item">Contact Us</a>
                                     </li>
                                     <!-- <li><a href="/faq" class="sub-menu-item">F.A.Q</a></li> -->
                                 </ul>
@@ -130,7 +136,7 @@
                     </li>
 
                     <li>
-                        <a href="/register" class="sub-menu-item">Register <span class="icofont-user"></span></a>
+                        <a href="/register" class="sub-menu-item">Register <i class="icofont-user-alt-2"></i></a>
                     </li>
                 </ul>
                 <!--end navigation menu-->
@@ -245,7 +251,7 @@
                         </div>
 
                         <div class="col-md-4 text-center text-white">
-                            <i class="text-main icofont-headphone-alt ico"></i>
+                            <i class="text-main icofont-headphone-alt-2 ico"></i>
                             <h3 class="mt-5">24/7 Support</h3>
 
                             <p>Prompt multilingual support</p>
@@ -275,7 +281,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <img src="assets/images/840@2x.png" width="100%" alt="" />
+                        <img src="/assets/images/840@2x.png" width="100%" alt="" />
                     </div>
                 </div>
             </div>
@@ -384,7 +390,7 @@
     </div>
 
     <section class="section" style="
-        background: url('assets/images/price.svg');
+        background: url('/assets/images/price.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -410,39 +416,40 @@
 
             <div class="row">
                 <div class="row cont hide_con">
+                    @foreach ($plans as $plan)
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="card pricing price-two rounded text-center border-0 shadow px-4 py-5 price-card">
                             <div class="mb-5">
-                                <h1 class="display-4 fw-medium mb-0">0.17%</h1>
+                                <h1 class="display-4 fw-medium mb-0">{{ $plan->profit }}%</h1>
                                 <p class="text-muted mb-0">Daily Profit</p>
                             </div>
 
                             <div class="p-2 h6 mx-5 rounded-lg bg-dark">
-                                <span class="text-light text-uppercase">STI DEMO</span>
+                                <span class="text-light text-uppercase">{{ $plan->name }}</span>
                             </div>
 
                             <ul class="list-unstyled mb-0 mt-4">
                                 <li class="text-muted mt-3">
                                     Minimum Deposit: <br />
-                                    <strong>$10.00</strong>
+                                    <strong>${{ $plan->min_deposit }}</strong>
                                 </li>
                                 <li class="text-muted mt-3">
                                     Maximum Deposit: <br />
-                                    <strong>$199.00</strong>
+                                    <strong>${{ $plan->max_deposit }}</strong>
                                 </li>
                                 <li class="text-muted mt-3">
                                     Contract life: <br />
-                                    <strong>14 Days </strong>
+                                    <strong>{{ $plan->contact_life > 14 ? $plan->contact_life . " Months" : $plan->contact_life . " Days" }}  </strong>
                                 </li>
                                 <li class="text-muted mt-3">
                                     Business Days: <br />
-                                    <strong>Mondays - Fridays</strong>
+                                    <strong>{{ $plan->business_day }}</strong>
                                 </li>
                                 <li class="text-muted mt-3">
                                     Withdrawal: <br />
-                                    <strong>Weekly/Monthly</strong>
+                                    <strong>{{ $plan->withdrawal }}</strong>
                                 </li>
-                                <li class="text-muted mt-3">5% referrer Bonus</li>
+                                <li class="text-muted mt-3">{{ $plan->referral_bonus }}% referrer Bonus</li>
                             </ul>
 
                             <div class="mt-4 pt-2">
@@ -450,6 +457,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="card pricing price-two rounded text-center border-0 shadow px-4 py-5 price-card">
@@ -705,7 +713,7 @@
     <!--end section-->
 
     <div class="container-fluid px-0">
-        <div class="py-5 position-relative" style="background: url('assets/images/cta02.jpg') center">
+        <div class="py-5 position-relative" style="background: url('/assets/images/cta02.jpg') center">
             <div class="bg-overlay bg-gradient-overlay"></div>
             <div class="container my-5">
                 <div class="row align-items-center p-2">
@@ -731,7 +739,7 @@
     </div>
 
     <div style="
-        background: url('assets/images/astro3.png');
+        background: url('/assets/images/astro3.png');
         background-size: contain;
         background-repeat: no-repeat;
       ">
@@ -807,7 +815,7 @@
                 </div>
 
                 <div class="col-md-4 text-center text-white">
-                    <span class="icofont-medal ico text-primary"></span>
+                    <span class="icofont-medal-sport text-primary"></span>
                     <h5 class="mt-4">Best Technology Application</h5>
                     <small>The Web Marketing Association</small>
                 </div>
@@ -862,7 +870,7 @@
                                         <div class="tiny-slide tns-item" id="tns2-item0" aria-hidden="true" tabindex="-1">
                                             <div class="card team team-primary">
                                                 <div class="card-img">
-                                                    <img src="assets/images/04.jpg" class="img-fluid" alt="" />
+                                                    <img src="/assets/images/04.jpg" class="img-fluid" alt="" />
                                                     <div class="card-overlay"></div>
                                                 </div>
                                                 <div class="team-content">
@@ -875,7 +883,7 @@
                                         <div class="tiny-slide tns-item" id="tns2-item1" aria-hidden="true" tabindex="-1">
                                             <div class="card team team-primary">
                                                 <div class="card-img">
-                                                    <img src="assets/images/06.jpg" class="img-fluid" alt="" />
+                                                    <img src="/assets/images/06.jpg" class="img-fluid" alt="" />
                                                     <div class="card-overlay"></div>
                                                 </div>
                                                 <div class="team-content">
@@ -890,7 +898,7 @@
                                         <div class="tiny-slide tns-item tns-slide-active" id="tns2-item2">
                                             <div class="card team team-primary">
                                                 <div class="card-img">
-                                                    <img src="assets/images/03.jpg" class="img-fluid" alt="" />
+                                                    <img src="/assets/images/03.jpg" class="img-fluid" alt="" />
                                                     <div class="card-overlay"></div>
                                                 </div>
                                                 <div class="team-content">
@@ -905,7 +913,7 @@
                                         <div class="tiny-slide tns-item" id="tns2-item3" aria-hidden="true" tabindex="-1">
                                             <div class="card team team-primary">
                                                 <div class="card-img">
-                                                    <img src="assets/images/01.jpg" class="img-fluid" alt="" />
+                                                    <img src="/assets/images/01.jpg" class="img-fluid" alt="" />
                                                     <div class="card-overlay"></div>
                                                 </div>
                                                 <div class="team-content">
@@ -930,14 +938,14 @@
             </div>
             <!--end 
             
-            <!--end container-->
-            <!--end container-->
+          
+       
         </section>
         <!--end container-->
         <!-- End -->
 
         <!-- Start CTA -->
-        <section class="bg-cta" style="background: url('assets/images/cta03.png') center">
+        <section class="bg-cta" style="background: url('/assets/images/cta03.png') center">
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-lg-8 col-md-6 col-12 card-bg">
@@ -949,7 +957,7 @@
                             <div class="tiny-single-item">
                                 <div class="tiny-slide">
                                     <div class="card client-testi text-center">
-                                        <span class="text-dark icofont-user avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
+                                        <span class="text-dark icofont-user-alt-2 avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
 
                                         <div class="card-body pb-0 content">
                                             <p class="h6 fw-normal text-muted fst-italic">
@@ -986,7 +994,7 @@
 
                                 <div class="tiny-slide">
                                     <div class="card client-testi text-center">
-                                        <span class="text-dark icofont-user avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
+                                        <span class="text-dark icofont-user-alt-2 avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
 
                                         <div class="card-body pb-0 content">
                                             <p class="h6 fw-normal text-muted fst-italic">
@@ -1005,7 +1013,7 @@
 
                                 <div class="tiny-slide">
                                     <div class="card client-testi text-center">
-                                        <span class="text-dark icofont-user avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
+                                        <span class="text-dark icofont-user-alt-2 avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
 
                                         <div class="card-body pb-0 content">
                                             <p class="h6 fw-normal text-muted fst-italic">
@@ -1026,7 +1034,7 @@
 
                                 <div class="tiny-slide">
                                     <div class="card client-testi text-center">
-                                        <span class="text-dark icofont-user avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
+                                        <span class="text-dark icofont-user-alt-2 avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
 
                                         <div class="card-body pb-0 content">
                                             <p class="h6 fw-normal text-muted fst-italic">
@@ -1066,7 +1074,7 @@
 
                                 <div class="tiny-slide">
                                     <div class="card client-testi text-center">
-                                        <span class="text-dark icofont-user avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
+                                        <span class="text-dark icofont-user-alt-2 avatar p-3 rounded-pill mx-auto" style="font-size: 50px; border: 1px solid #3c4858"></span>
 
                                         <div class="card-body pb-0 content">
                                             <p class="h6 fw-normal text-muted fst-italic">
@@ -1123,21 +1131,21 @@
                                 <h6 class="footer-head">Company</h6>
                                 <ul class="list-unstyled footer-list mt-4">
                                     <li>
-                                        <a href="/home" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Home</a>
+                                        <a href="/" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Home</a>
                                     </li>
                                     <li>
-                                        <a href="/our_numbers" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Our
+                                        <a href="{{ route('our_numbers')  }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Our
                                             Numbers</a>
                                     </li>
                                     <li>
-                                        <a href="/about" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About Us</a>
+                                        <a href="{{ route('about') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About Us</a>
                                     </li>
                                     <li>
-                                        <a href="/plans" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
+                                        <a href="{{ route('plans')  }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>
                                             Investment</a>
                                     </li>
                                     <li>
-                                        <a href="/contact" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Contact
+                                        <a href="{{ route('contact')  }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Contact
                                             Us</a>
                                     </li>
                                 </ul>
@@ -1149,19 +1157,19 @@
                                 <ul class="list-unstyled footer-list mt-4">
                                     <li>
                                         <h6>
-                                            <span class="icofont-phone"></span>+1 719-4142-678
+                                            <span class="icofont-smart-phone"></span>+1 719-4142-678
                                         </h6>
                                     </li>
                                     <li>
                                         <h6>
-                                            <span class="icofont-phone"></span> +1 432-5262-535
+                                            <span class="icofont-smart-phone"></span> +1 432-5262-535
                                         </h6>
                                     </li>
 
                                     <li>
                                         <h6>
                                             <span class="icofont-email">
-                                                support@storagetemasek.io</span>
+                                                support@dentialcapital.com</span>
                                         </h6>
                                     </li>
 
@@ -1199,7 +1207,7 @@
             <div class="bg-sm-2">
                 <img src="/assets/images/tfc-icon.png" class="mt-4" alt="" />
                 <p>
-                    Storagetemasek is a member of The Financial Commission, an
+                    Dential Capital is a member of The Financial Commission, an
                     international organization engaged in the resolution of disputes
                     within the financial services industry in the Forex market.
                 </p>
@@ -1207,7 +1215,7 @@
                 <img src="/assets/images/sec-logo.png" class="mt-4" alt="" />
 
                 <p>
-                    Storagetemasek is regulated by the US Securities and Exchange
+                    Dential Capital is regulated by the US Securities and Exchange
                     Commission. The mission of the SEC is to protect investors; maintain
                     fair, orderly, and efficient markets; and facilitate capital
                     formation. Storagetemasek is an investment company that . Direct
@@ -1250,7 +1258,7 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                © storagetemasek.io <i class="mdi mdi-heart text-danger"></i>
+                                © dentialcapital.com <iconify-icon icon="mdi:heart" style="color: red;"></iconify-icon>
                             </p>
                         </div>
                     </div>
@@ -1263,6 +1271,9 @@
     </footer>
 
     <a href="javascript:void(0)" onclick="topFunction()" id="back-to-top" class="back-to-top rounded-pill"><i class="mdi mdi-arrow-up"></i></a>
+
+     <!-- Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/tiny-slider.js"></script>
@@ -1281,8 +1292,7 @@
             );
         }
     </script>
-
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-
 </html>

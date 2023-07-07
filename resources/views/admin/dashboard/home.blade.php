@@ -14,6 +14,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -22,6 +23,9 @@
                                 <tr>
                                     <td scope="row">{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.deactivate', $user->id) }}" role="button" class="btn btn-danger" id="statuschange">Deactivate</a>
+                                    </td>
                                     <!--<td><div class="btn btn-group">
                                             <button type="button" class="btn dropdown-toggle btn-lg" data-bs-toggle="dropdown" aria-expanded="true">
                                             list of churches    
@@ -36,7 +40,7 @@
                                         </div>
                                     </td>-->
                                     <td>
-                                        <a href="{{ route('admin.users.show', $user->id) }}"><button type="button" class="btn btn-info">Detail</button></a>
+                                        <a href="{{ route('admin.users.show', $user->id) }}"><button type="button" class="btn btn-info">Action</button></a>
                                     </td>
                                 </tr>
                                     @endforeach

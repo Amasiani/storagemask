@@ -14,11 +14,12 @@ class ReferralController extends Controller
     public function index()
     {
         $referred = Referral::where('user_id', auth()->user()->id)->get();
-        $emailsArray = $referred->pluck('email')->toArray();        
-        
+        $emailsArray = $referred->pluck('email')->toArray(); 
+        $referrals =  Referral::all(); 
         return view('admin.referrals.index', [
             'referred' => $referred,
-            'emails' =>  $referred->pluck('email')
+            'emails' =>  $referred->pluck('email'),
+            'referrals' => Referral::paginate(20),
         ]);
     }
     
@@ -39,5 +40,17 @@ class ReferralController extends Controller
             //}
         //});
         //return view('admin.referrals.referred', ['referred' => $referrals]);
+    }
+
+    public function show($id)
+    {
+        $referrals = Referral::find($id);
+        $referrer = User::find( $referrals->user_id);
+        
+        return view('admin.referrals.show',
+        [
+            'referrals' => $referrals,
+            'referrer' => $referrer->name,
+        ]);
     }
 }

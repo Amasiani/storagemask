@@ -15,7 +15,6 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Profit</th>
                             <th scope="col">Name</th>
                             <th scope="col">Minimum Deposit</th>
                             <th scope="col">Maximum Deposit</th>
@@ -30,15 +29,14 @@
                         <tbody>
                             @foreach ($plans as $plan)
                             <tr>
-                                <td scope="row">{{ $plan->profit }}%</td>
-                                <td>{{ $plan->name }}</td>
+                                <td scope="row">{{ $plan->name }}</td>
                                 <td>${{ $plan->min_deposit }}</td>
                                 <td>${{ $plan->max_deposit }}</td>
                                 <td>{{ $plan->contact_life == 14 ?  $plan->contact_life . ' ' . 'Days' : $plan->contact_life . ' ' . 'Months'   }}</td>
                                 <td>{{ $plan->business_day }}</td>
                                 <td>{{ $plan->withdrawal }}</td>
                                 <td>{{ $plan->referral_bonus }}%</td>
-                                <td>{{ $plan->profit}}</td>
+                                <td>{{ $plan->profit }}%</td>
                                 <td><a href="{{ route('admin.investments.create') }}" role="button" class="btn btn-info btn-sm">Invest</a></td>
                             </tr>
                             @endforeach

@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Account;
-use Illuminate\support\Arr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Cashwithdrawal;
 use App\Models\PlanUser;
-use Symfony\Component\HttpKernel\Event\ViewEvent;
+
 
 class AccountController extends Controller
 {
@@ -50,7 +48,7 @@ class AccountController extends Controller
          * if user have account update account with new value
          * get request user account account_id
          * find request user account details from accounts table
-         * add request vale to existing account amount
+         * add request value to existing account amount
          * always redirect to index when successfull.
         */
         $request_user = User::find($request->user_id);
@@ -69,9 +67,9 @@ class AccountController extends Controller
         {
             $account_id = $request_user->account->id;
             $updateAccount = Account::find($account_id);
-            $newvalue = $request->amount + $request_user->account->amount;
+            $newAmount = $request->amount + $request_user->account->amount;
 
-            $updateAccount->update(['amount' => $newvalue]);
+            $updateAccount->update(['amount' => $newAmount]);
 
             return redirect()->route('admin.accounts.index')->with('success', 'Account updated');  
         }   
@@ -120,15 +118,26 @@ class AccountController extends Controller
 
     public function withdrawal(Request $request)
     {
+        /** 
+         * @param Request
+         * retrieve all cash request from the Cashwithdrawals table.
+         * if $request->user has role, return cash demand request to
+         * admin.accounts.adminwithdraw view.
+         * else sum $profits from the PlanUser table for auth->user.
+         * and retrieve auth->user amount ($deposits) from Accounts table.
+         * return $profits and $depsits to admin.accounts.withdrawal view
+        */
+        
         //$profits = PlanUser::whereNotNull('profit')->get();
         //$deposits = User::has('account')->get();
-        $demandforcash = Cashwithdrawal::all();
-       
-        if (User::has('roles')){
-            return view('admin.accounts.adminwithdraw')->with(['users' => User::doesntHave('roles')->get()])->with(['profits' =>$demandforcash]);
-        }
         //$wallet = array($profits, $deposits);
         //return view('admin.accounts.withdrawal', ['wallets' => $wallet]);
+        
+        $demandforcash = Cashwithdrawal::all();
+        
+        if (User::has('roles')){
+            return view('admin.accounts.adminwithdraw')->with(['users' => User::doesntHave('roles')->get()])->with(['profits' => $demandforcash]);
+        }
         $profits = PlanUser::where('user_id', auth()->user()->id)->get()->pluck('profit')->sum();
         $deposits = auth()->user()->account->amount;
         return view('admin.accounts.withdrawal')->with(['profits' => $profits])->with(['deposits' => $deposits]);
@@ -149,5 +158,19 @@ class AccountController extends Controller
         $updateAccount->update(['amount' => $newvalue]);
 
         return redirect()->route('admin.accounts.index')->with('success', 'Account updated');;
+    }
+
+    public function planuserStatus($id)
+    {
+        $planuser = PlanUser::find($id)->first();
+        if ($planuser->status == true)
+        {
+            $planuser->update(['status' => false]);
+        }else
+        {
+            $planuser->update(['status' => true]);
+        }
+        return redirect()->back();
+        
     }
 }
