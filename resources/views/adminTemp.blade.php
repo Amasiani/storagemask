@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="/layout/asset/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="/css/storagetemaske.css">
+  <link rel="shortcut icon" href="/assets/img/logo.png" type="image/x-icon" />
   @vite(['resources/js/app.js'])
 </head>
 

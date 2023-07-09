@@ -1,5 +1,5 @@
 @extends('admintemp')
-@section('title', 'Fund account')
+@section('title', 'Fund User Account')
 @section('content')
 <section style="padding-top:5px;">
     <div class="container-fluid">

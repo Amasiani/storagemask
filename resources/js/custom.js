@@ -84,13 +84,13 @@ depositInput.addEventListener('click', () => {
     sendDetails.addEventListener('click', () => {
         var amt = document.getElementById('dp_amount').value;
         var pay_type = document.getElementById('pay_type').value;
-        axios.get("/fund", {
+        axios.get("/create", {
                 params: { amount: amt,
                     pay_type: pay_type,
                 },
         }).then((response) => {
             var msg = response.data.message;
-            alert(msg);
+                alert(msg);
             })
             .catch((error) => {
                 console.log(error.response);

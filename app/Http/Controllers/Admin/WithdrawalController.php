@@ -60,19 +60,27 @@ class WithdrawalController extends Controller
      */
     public function store(Request $request)
     {        
+        
+        
+        //dd($request);
         $profits = Account::where('user_id', auth()->user()->id)->get()->value('total_profit');
         $deposits = auth()->user()->account->amount;
+        
         $request->validate([
             'amount' => 'required|numeric',
             'wallet_address' => 'required|string',
         ]);
 
         if ($request->wallet == "profits"){
-            switch ($profits) {
-                case ($request->amount > $profits):
+            switch ($profits) {    
+                case ($profits == 'null'):
+                    return redirect()->back()->with('success', 'You have not made profit on your investment!!!' . ' ' . $profits);
+                    break;
+                
+                case ($profits < $request->amount):
                     return redirect()->back()->with('success', 'Your profit balance is too low!!!' . ' ' . $profits);
                     break;
-    
+
                 case ($request->wallet == "profits"):
                     Cashwithdrawal::create([
                         'user_id' => auth()->user()->id,
@@ -92,29 +100,39 @@ class WithdrawalController extends Controller
                     return redirect('/home')->with('success', 'Your transition was successful');
                     break;
                 default:
-                    echo "All worked out well for profits";
+                    echo "All did not work out well for profits";
             }
-        }
-        switch ($deposits) {
-            case ($request->amount > $deposits):
-                return redirect()->back()->with('success', 'Your deposit balance is too low!!!' . ' ' . $deposits);
-                break;
+        }elseif ($request->wallet == "deposits")
+        {
+            switch ($deposits) {
+                case ($request->amount > $deposits):
+                    return redirect()->back()->with('success', 'Your deposit balance is too low!!!' . ' ' . $deposits);
+                    break;
+    
+                case ($deposits == 'null'):
+                    return redirect()->back()->with('success', 'Please make deposit!!!' . ' ' . $deposits);
+                    break;
 
-            case ($request->wallet == "deposits"):
-                Cashwithdrawal::create([
-                    'user_id' => auth()->user()->id,
-                    'deposit' => TRUE,
-                    'amount' => $request->amount,
-                    'wallet_address' => $request->wallet_address,
-                    'crypto' => $request->crypto,
-                ]);
-                $newtotalDeposit =  $deposits - $request->amount;
-                $userAccount = Account::where('user_id', auth()->user()->id);
-                $userAccount->update(['amount' => $newtotalDeposit]);
-                return redirect()->back()->with('success', 'Your transition was successful' ); // send the admin email of he user deatils
-                break;
-            default:
-                echo "It all worked out well for deposits";
+                case ($request->wallet == "deposits"):
+                    Cashwithdrawal::create([
+                        'user_id' => auth()->user()->id,
+                        'deposit' => True,
+                        'amount' => $request->amount,
+                        'wallet_address' => $request->wallet_address,
+                        'crypto' => $request->crypto,
+                    ]);
+                    $newtotalDeposit =  $deposits - $request->amount;
+                    $userAccount = Account::where('user_id', auth()->user()->id);
+                    $userAccount->update(['amount' => $newtotalDeposit]);
+    
+                    $notice = new ContactFormController;
+                    $notice->withdrawalRequest($request);
+    
+                    return redirect()->back()->with('success', 'Your transition was successful' ); // send the admin email of he user deatils
+                    break;
+                default:
+                    echo "It all worked out well for deposits";
+            }
         }
     }
 

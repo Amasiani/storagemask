@@ -45,7 +45,7 @@
                                 {{Session::get('message_sent')}}
                             </div>
                             @endif
-                            <form method="POST" action="{{route('admin.withdrawals.store')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.withdrawals.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 @include('admin.withdrawals.partials.forms', ['userwithdraw' => true])
                                 <button type="submit" class="btn btn-info float-start">Submit</button>

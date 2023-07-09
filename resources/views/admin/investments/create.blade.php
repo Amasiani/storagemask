@@ -9,7 +9,6 @@
                 @canany(['is-admin'])
                 <a href="{{ route('admin.investments.index') }}" role="button" class="btn mb-2 float-end">Back</a>
                 @endcanany
-                <a href="{{ url('/home') }}" role="button" class="btn mb-2 float-end">Back</a>
             </div>
             <div class="card-body">
                 @if(Session::has('success'))

@@ -31,8 +31,8 @@ class WithdrawalRequestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new MailablesAddress(auth()->user()->email, 'Withdrawal Request Mail'),
-            subject: 'Withdrawal request Mail',
+            from: new MailablesAddress('contact@storagemask.com', 'Withdrawal Request Mail'),
+            subject: 'Withdrawal Mail',
         );
     }
 

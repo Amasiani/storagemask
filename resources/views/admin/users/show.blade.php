@@ -11,7 +11,7 @@
                                 document.getElementById('delete-user-form{{ $user->id }}').submit()">
                                 Delete
                             </button>
-                            <a href="{{ route('admin.users.edit', $user->id) }}"><button class="btn btn-primary me-md-2 mr-2 float-end" role="button">Edit</button></a>
+                            <!-- <a href="#"><button class="btn btn-primary me-md-2 mr-2 float-end" role="button">Edit</button></a> -->
                             <form id="delete-user-form{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')

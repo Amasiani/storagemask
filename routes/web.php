@@ -57,7 +57,8 @@ Route::get('about', [PagesController::class, 'about'])->name('about');
 /**
  * Include admin route
  */
-Route::get('/fund', [ContactFormController::class, 'depositNotification'])->middleware('auth')->name('fund');
+Route::get('/create', [ContactFormController::class, 'depositNotification'])->middleware('auth')->name('create');
+Route::get('/fund', [ContactFormController::class, 'depositNotification'])->middleware(['auth', 'auth.isAdmin'])->name('fund');
 Route::get('/transfer', [ProfitController::class, 'transferprofit'])->name('transfer');
 Route::post('/resetLink', [PasswordResetController::class, 'resetLink'])->middleware('auth')->name('newLink.send');
 Route::get('/create-link', [PasswordResetController::class, 'createLink'])->middleware('auth')->name('newLink');

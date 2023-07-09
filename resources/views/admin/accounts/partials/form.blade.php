@@ -8,8 +8,8 @@
             @endisset
         </div>
         <div class="card-body">
-            <p class="text-left">Our minimum amount is <strong> $100.00</strong> and the maximum amount is <strong> $1,000,000.00</strong> a day. If you need to increase your limit, please Contact Support team. The top-up amount will be added to your Storagetemasek account a few minutes after the payment clears. On rare occasions, it may take up to 24 hours for the amount to show in your account. This payment method is 100% commission free. <br></p>
-            <p>For issue reports and inquiries, please contact <a href="mailto:support@storagetemasek.io">support@storagetemasek.io</a> </p>
+            <p class="text-left">Our minimum amount is <strong> $100.00</strong> and the maximum amount is <strong> $1,000,000.00</strong> a day. If you need to increase your limit, please Contact Support team. The top-up amount will be added to your Dential Capital account a few minutes after the payment clears. On rare occasions, it may take up to 24 hours for the amount to show in your account. This payment method is 100% commission free. <br></p>
+            <p>For issue reports and inquiries, please contact <a href="mailto:support@dentialcapital.com">support@dentialcapital.com</a> </p>
         </div>
     </div>
 </div>

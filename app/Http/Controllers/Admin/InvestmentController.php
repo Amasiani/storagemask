@@ -53,29 +53,33 @@ class InvestmentController extends Controller
         $plan = Plan::where('id', $request->plan_id)->get(); //get request plan
         $userAccount = Account::where('user_id', '=', auth()->user()->id); // Getting currentuser Account model (object)
 
-        switch ($request->amount) {
-            case ( $request->amount  > auth()->user()->account->amount):
-                return redirect()->back()->with('success', 'Your balance is to low to invest!');
-                break;
-            case ($request->amount < $plan->value('min_deposit')):
-                return redirect()->back()->with('success', 'Your cannot invest less that the Plan minimum deposit!' . ' ' . '$' .$plan->value('min_deposit'));
-                break;
-            default:
-                $userNewBalance =  auth()->user()->account->amount - $request->amount; //subtracting the invested amount from the available balance 
-                $userAccount->update([
-                    'amount' => $userNewBalance
-                ]);
-                PlanUser::create([
-                    'plan_id' => $request->plan_id,
-                    'user_id' => auth()->user()->id,
-                    'investment' => $request->amount,
-                    'plan_profit' => $plan->value('profit'),
-                    'payment_type' => $request->payment_type,
-                ]);
-
-                return redirect()->back()->with('success', 'You have invested and your Account updated!');
-                break;
+        if (isset(auth()->user()->account))
+        {
+            switch ($request->amount) {
+                case ( $request->amount  > auth()->user()->account->amount):
+                    return redirect()->back()->with('success', 'Your balance is to low to invest!');
+                    break;
+                case ($request->amount < $plan->value('min_deposit')):
+                    return redirect()->back()->with('success', 'Your cannot invest less that the Plan minimum deposit!' . ' ' . '$' .$plan->value('min_deposit'));
+                    break;
+                default:
+                    $userNewBalance =  auth()->user()->account->amount - $request->amount; //subtracting the invested amount from the available balance 
+                    $userAccount->update([
+                        'amount' => $userNewBalance
+                    ]);
+                    PlanUser::create([
+                        'plan_id' => $request->plan_id,
+                        'user_id' => auth()->user()->id,
+                        'investment' => $request->amount,
+                        'plan_profit' => $plan->value('profit'),
+                        'payment_type' => $request->payment_type,
+                    ]);
+    
+                    return redirect()->back()->with('success', 'You have invested and your Account updated!');
+                    break;
+            }
         }
+        return redirect()->route('admin.accounts.create')->with('success', 'Fund Your Account.');
     }
 
     /**

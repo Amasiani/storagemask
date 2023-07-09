@@ -9,7 +9,7 @@
                     Cash Withdrawal request
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class=" table-hover table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -27,7 +27,7 @@
                                     <td>{{ $withdrawalrequest->wallet_address }}</td>
                                     <td>{{ Str::upper($withdrawalrequest->crypto) }}</td>
                                     <td>
-                                        {{ $withdrawalrequest->deposit === true ? "Deposit" : "Profit" }}
+                                        {{ $withdrawalrequest->deposit == true ? "Deposit" : "Profit" }}
                                     <td>
                                     <td><a href="{{ route('admin.cashwithdrawals.show', $withdrawalrequest->id) }}" role="button" class="btn btn-info btn-sm">Detail</a></td>
                                 </tr>

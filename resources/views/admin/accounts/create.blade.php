@@ -1,5 +1,5 @@
 @extends('admintemp')
-@section('title', 'Create account')
+@section('title', 'Create Account')
 @section('content')
 <section style="padding-top:5px;">
     <!--<div class="container overflow-hidden text-center">

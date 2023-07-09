@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        {{ $accounts->links()}}
+        {{ $accounts->links() }}
     </div>
 </div>
 @endsection
